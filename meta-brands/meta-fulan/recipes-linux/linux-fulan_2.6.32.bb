@@ -104,6 +104,9 @@ do_shared_workdir_append() {
     fi
     if [ -f include/asm-sh/machtypes.h ]; then
         mkdir -p $kerneldir/include/asm-sh
+	if [ -L $kerneldir/include/asm ]; then
+		rm $kerneldir/include/asm
+	fi
         ln -s $kerneldir/include/asm-sh $kerneldir/include/asm
         cp include/asm-sh/machtypes.h $kerneldir/include/asm-sh
     fi
@@ -148,3 +151,7 @@ pkg_postinst_kernel-image() {
 
 do_rm_work() {
 }
+
+# extra tasks
+addtask kernel_link_images after do_compile before do_install
+

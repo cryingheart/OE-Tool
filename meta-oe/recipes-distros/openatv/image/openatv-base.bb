@@ -18,6 +18,7 @@ RDEPENDS_${PN} = "\
     openatv-bootlogo \
     openatv-spinner \
     openssh-sftp-server \
+    ntfs-3g \
     exteplayer3 \
     gstplayer \
     ffmpeg \
