@@ -26,11 +26,10 @@ RRECOMMENDS_${PN} = " \
     enigma2-plugin-extensions-volume-adjust \
     enigma2-plugin-extensions-tvspielfilm \
     enigma2-plugin-extensions-bmediacenter \
-    enigma2-plugin-extensions-mainmenu2 \
-    enigma2-plugin-extensions-serviceapp \
     enigma2-plugin-systemplugins-videotune \
     ${@bb.utils.contains("MACHINE_FEATURES", "videoenhancement", "", "enigma2-plugin-systemplugins-videoenhancement", d)} \
     enigma2-plugin-systemplugins-softwaremanager \
+    enigma2-plugin-systemplugins-serviceapp \
     enigma2-plugin-systemplugins-vps \
     enigma2-plugin-systemplugins-hotplug \
     enigma2-plugin-extensions-mediaplayer \
