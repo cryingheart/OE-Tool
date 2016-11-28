@@ -3,6 +3,7 @@ SECTION = "base"
 PRIORITY = "optional"
 LICENSE = "PD"
 LIC_FILES_CHKSUM = "file://showiframe.c;firstline=1;endline=1;md5=d67f9281bc4bfeee90913721aa741a8b"
+PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 PV = "1.4"
 PR = "r4"
