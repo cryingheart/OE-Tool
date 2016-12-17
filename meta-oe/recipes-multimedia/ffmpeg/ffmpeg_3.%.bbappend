@@ -1,6 +1,10 @@
 PR = "r0"
 
-DEPENDS = "libbluray libxml2"
+PROVIDES =+ " libavcodec53 libavformat53 libav"
+PACKAGES =+ " libavcodec53 libavformat53 libav"
+
+DEPENDS = "libbluray rtmpdump libxml2 openssl librtmp virtual/libsdl"
+RDEPENDS_${PN} = "libbluray rtmpdump libxml2 openssl"
 
 SRC_URI_append = " \
     file://ffmpeg-fix-hls.patch \
@@ -227,7 +231,7 @@ EXTRA_FFCONF = " \
     --disable-mips32r2 \
     --disable-mipsdsp \
     --disable-mipsdspr2 \
-    ${@bb.utils.contains('TARGET_FPU', 'soft', ' --disable-mipsfpu', '', d)} \
+    --disable-mipsdsp \
     --disable-indevs \
     --disable-outdevs \
     --enable-bzlib \
@@ -242,7 +246,7 @@ EXTRA_FFCONF = " \
     --prefix=${prefix} \
 "
 
-PACKAGECONFIG = "avdevice avfilter avcodec avformat swresample swscale openssl bzlib"
+PACKAGECONFIG = "avdevice avfilter avcodec avformat swresample swscale openssl"
 
 FILES_${PN}-dbg += "/usr/share"
 
