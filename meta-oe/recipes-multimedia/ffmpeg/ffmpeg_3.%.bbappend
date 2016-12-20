@@ -246,7 +246,7 @@ EXTRA_FFCONF = " \
     --prefix=${prefix} \
 "
 
-PACKAGECONFIG = "avdevice avfilter avcodec avformat swresample swscale openssl"
+PACKAGECONFIG = "avdevice avfilter avcodec avformat swresample swscale openssl bzlib"
 
 FILES_${PN}-dbg += "/usr/share"
 
