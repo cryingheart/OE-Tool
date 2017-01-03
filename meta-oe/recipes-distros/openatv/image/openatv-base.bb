@@ -26,6 +26,7 @@ RDEPENDS_${PN} = "\
     busybox-cron \
     python-imaging \
     rtmpdump \
+    zip \
     packagegroup-base-smbfs-client \
     ${@bb.utils.contains("MACHINE_FEATURES", "dreambox", "", "ofgwrite", d)} \
     ${@bb.utils.contains("TUNE_FEATURES", "armv7a", "glibc-compat", "", d)} \

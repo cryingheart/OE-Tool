@@ -24,8 +24,10 @@ RRECOMMENDS_${PN} = " \
     enigma2-plugin-extensions-cutlisteditor \
     enigma2-plugin-extensions-dvdplayer \
     enigma2-plugin-extensions-volume-adjust \
+    enigma2-plugin-extensions-mediaportal \
     enigma2-plugin-extensions-tvspielfilm \
     enigma2-plugin-extensions-bmediacenter \
+    enigma2-plugin-extensions-zdfnewmediathek \
     enigma2-plugin-systemplugins-videotune \
     ${@bb.utils.contains("MACHINE_FEATURES", "videoenhancement", "", "enigma2-plugin-systemplugins-videoenhancement", d)} \
     enigma2-plugin-systemplugins-softwaremanager \
