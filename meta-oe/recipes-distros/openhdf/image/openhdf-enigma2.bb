@@ -7,46 +7,48 @@ ALLOW_EMPTY_${PN} = "1"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 PV = "1.0"
-PR = "r56"
+PR = "r75"
 
 inherit packagegroup
 
-DEPENDS = "enigma2-pliplugins openatv-feeds"
+DEPENDS = "openhdf-feeds openhdf-3rdparty-plugins"
 
 RRECOMMENDS_${PN} = " \
+    openhdf-version-info \
     enigma2-skindefault \
-    openatv-version-info \
-    ${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "", "enigma2-plugin-drivers-usbserial", d)} \
-    enigma2-plugin-extensions-infopanel \
+    python-compression \
+    enigma2-plugin-skins-xionhdf \ 
+    enigma2-plugin-drivers-usbserial \
     enigma2-plugin-extensions-autotimer \
     enigma2-plugin-extensions-epgsearch \
     enigma2-plugin-extensions-imdb \
     enigma2-plugin-extensions-cutlisteditor \
     enigma2-plugin-extensions-dvdplayer \
+    enigma2-plugin-systemplugins-extnumberzap \
     enigma2-plugin-extensions-volume-adjust \
     enigma2-plugin-extensions-zdfnewmediathek \
     enigma2-plugin-extensions-tvspielfilm \
     enigma2-plugin-extensions-bmediacenter \
+    enigma2-plugin-systemplugins-devicemanager \
     enigma2-plugin-systemplugins-videotune \
-    ${@bb.utils.contains("MACHINE_FEATURES", "videoenhancement", "", "enigma2-plugin-systemplugins-videoenhancement", d)} \
     enigma2-plugin-systemplugins-softwaremanager \
     enigma2-plugin-systemplugins-serviceapp \
     enigma2-plugin-systemplugins-vps \
     enigma2-plugin-systemplugins-hotplug \
-    enigma2-plugin-extensions-mediaplayer \
-    ${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "", "enigma2-plugin-extensions-openwebif-themes", d)} \
-    ${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "enigma2-plugin-extensions-openwebif-webtv", "enigma2-plugin-extensions-openwebif-vxg", d)} \
-    ${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "", "enigma2-plugin-extensions-enhancedmoviecenter", d)} \
-    ${@bb.utils.contains("MACHINE_FEATURES", "dreamboxv1", "enigma2-plugin-extensions-dflash mtd-utils-jffs2", "", d)} \
-    ${@bb.utils.contains("MACHINE_FEATURES", "dreamboxv2", "enigma2-plugin-extensions-dbackup e2fsprogs-badblocks", "", d)} \
+    enigma2-plugin-systemplugins-positionersetup \
+    enigma2-plugin-extensions-enhancedmoviecenter \
+    enigma2-plugin-extensions-audiosync \
+    ${@bb.utils.contains("MACHINE_FEATURES", "videoenhancement", "", "enigma2-plugin-systemplugins-videoenhancement", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "boxmodel", "boxmodel", "", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "dreamboxv1", "enigma2-plugin-extensions-dflash mtd-utils-jffs2", "", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "dreamboxv2", "enigma2-plugin-extensions-dbackup", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "uianimation", "enigma2-plugin-systemplugins-animationsetup" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "osdanimation", "enigma2-plugin-systemplugins-animationsetup" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "webkithbbtv", "webkit-hbbtv-browser", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "grautec", "enigma2-plugin-extensions-grautec", "", d)} \
-    ${@bb.utils.contains("MACHINE_FEATURES", "chromiumos", "enigma2-plugin-extensions-chromium", "", d)} \
-    ${@bb.utils.contains("MACHINE_FEATURES", "dvbc-only", "", "enigma2-plugin-extensions-programmlistenupdater", d)} \
     "
 
-RRECOMMENDS_${PN}_append_wetekplay = " enigma2-plugin-skins-metrix-atv-fhd-icons enigma2-plugin-systemplugins-wirelesslan"
-RRECOMMENDS_${PN}_append_wetekplay2 = " enigma2-plugin-skins-metrix-atv-fhd-icons enigma2-plugin-systemplugins-wirelesslan"
+RRECOMMENDS_${PN}_append_dags7335 = "enigma2-plugin-systemplugins-osd3dsetup"
+RRECOMMENDS_${PN}_append_dags7356 = "enigma2-plugin-systemplugins-osd3dsetup"
+RRECOMMENDS_${PN}_append_dags7362 = "enigma2-plugin-systemplugins-osd3dsetup"
+RRECOMMENDS_${PN}_append_wetekplay = "enigma2-plugin-extensions-snesmanager pbk"
