@@ -26,7 +26,6 @@ RRECOMMENDS_${PN} = " \
     enigma2-plugin-extensions-dvdplayer \
     enigma2-plugin-systemplugins-extnumberzap \
     enigma2-plugin-extensions-volume-adjust \
-    enigma2-plugin-extensions-zdfnewmediathek \
     enigma2-plugin-extensions-tvspielfilm \
     enigma2-plugin-extensions-bmediacenter \
     enigma2-plugin-systemplugins-devicemanager \
