@@ -1,0 +1,14 @@
+#!/bin/sh
+
+#Check network
+ping -w2 -c1 8.8.8.8
+if [ $? -eq 0 ] ; then
+	#Set date from NIST internet time server
+	grep -v '^ *#' /etc/rdate.conf |
+	grep . |
+	while read RDATE
+	do
+		echo "Running rdate -s $RDATE..."
+		rdate -s "$RDATE" && break
+	done
+fi
