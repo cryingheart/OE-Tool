@@ -30,7 +30,6 @@ RRECOMMENDS_${PN} = " \
     enigma2-plugin-systemplugins-videotune \
     ${@bb.utils.contains("MACHINE_FEATURES", "videoenhancement", "", "enigma2-plugin-systemplugins-videoenhancement", d)} \
     enigma2-plugin-systemplugins-softwaremanager \
-    enigma2-plugin-systemplugins-serviceapp \
     enigma2-plugin-systemplugins-vps \
     enigma2-plugin-systemplugins-hotplug \
     enigma2-plugin-extensions-mediaplayer \

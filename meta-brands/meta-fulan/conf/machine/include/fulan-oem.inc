@@ -138,6 +138,8 @@ SERIAL_CONSOLE = "115200 ttyAS0"
 DVBPROVIDER = "kernel"
 
 MACHINE_FEATURES = "3dtv alsa hdmicec switchoff kernel26 ext2 usbhost serial dvb-c singlecore textlcd sh4booster no-nmap omb skins1080 directfb"
+#Use libeplayer3, disable this if you want to use gstreamer
+MACHINE_FEATURES =+ " libeplayer"
 
 DVBMEDIASINK_CONFIG = "--with-wma --with-wmv --with-pcm --with-dtsdownmix --with-eac3"
 
@@ -191,7 +193,7 @@ MACHINE_ESSENTIAL_EXTRA_RDEPENDS += " \
     "
 
 MACHINE_EXTRA_RRECOMMENDS = " \
-    gstreamer1.0-plugin-dvbmediasink \
+    ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "", "gstreamer1.0-plugin-dvbmediasink", d)} \
     enigma2-plugin-systemplugins-sh4boostercontrol \
     enigma2-plugin-systemplugins-sh4osdadjustment \
     "

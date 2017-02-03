@@ -1,3 +1,4 @@
+
 SUMMARY = "Base packages require for image."
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
@@ -19,9 +20,6 @@ RDEPENDS_${PN} = "\
     openatv-spinner \
     openssh-sftp-server \
     ntfs-3g \
-    exteplayer3 \
-    gstplayer \
-    ffmpeg \
     hddtemp \
     busybox-cron \
     python-imaging \
