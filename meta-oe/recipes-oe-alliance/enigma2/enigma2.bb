@@ -7,7 +7,7 @@ DEPENDS = " \
     freetype \
     gettext-native \
     ${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "libeplayer3", "", d)} \
-	${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "", "gstreamer1.0-plugins-base gstreamer1.0", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "", "gstreamer1.0-plugins-base gstreamer1.0", d)} \
     jpeg \
     libdreamdvd libdvbsi++ libfribidi libmad libpng libsigc++-1.2 giflib libxml2 libxmlccwrap \
     openssl \
@@ -39,7 +39,7 @@ RDEPENDS_${PN} = " \
 RRECOMMENDS_${PN} = " \
     glib-networking \
     glibc-gconv-utf-16 \
-    ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "", "${GST_RRECOMMENDS} gstreamer1.0-plugin-dvbmediasink", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "", "gstreamer1.0-plugin-dvbmediasink", d)} \
     "
 
 PYTHON_RDEPS = " \
@@ -304,7 +304,7 @@ EXTRA_OECONF = " \
     --with-libsdl=no \
     --enable-dependency-tracking \
     ${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "--enable-libeplayer3", "", d)} \
-	${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "--disable-gstreamer", "--with-gstversion=1.0", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "--disable-gstreamer", "--with-gstversion=1.0", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "textlcd", "--with-textlcd" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd", "--with-colorlcd" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd128", "--with-colorlcd128" , "", d)} \
