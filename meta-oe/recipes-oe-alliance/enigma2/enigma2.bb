@@ -37,17 +37,17 @@ RDEPENDS_${PN} = " \
     "
 
 GST_RRECOMMENDS = " \
-	ca-certificates \
-	${GST_BASE_RDEPS} \
-	${GST_GOOD_RDEPS} \
-	${GST_BAD_RDEPS} \
-	${GST_UGLY_RDEPS} \
-	"
+    ca-certificates \
+    ${GST_BASE_RDEPS} \
+    ${GST_GOOD_RDEPS} \
+    ${GST_BAD_RDEPS} \
+    ${GST_UGLY_RDEPS} \
+    "
 
 RRECOMMENDS_${PN} = " \
     glib-networking \
     glibc-gconv-utf-16 \
-    ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "", "${GST_RRECOMMENDS}gstreamer1.0-plugin-dvbmediasink", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "GST_RRECOMMENDS", "gstreamer1.0-plugin-dvbmediasink", d)} \
     "
 
 PYTHON_RDEPS = " \
@@ -313,7 +313,6 @@ EXTRA_OECONF = " \
     --enable-dependency-tracking \
     ${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "--enable-libeplayer3", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "--disable-gstreamer", "--with-gstversion=1.0", d)} \
-    ${@bb.utils.contains("TARGET_ARCH", "sh4", "--enable-${MACHINE} --with-lcd=no" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "textlcd", "--with-textlcd" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd", "--with-colorlcd" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd128", "--with-colorlcd128" , "", d)} \
