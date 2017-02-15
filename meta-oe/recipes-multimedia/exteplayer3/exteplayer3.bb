@@ -14,7 +14,7 @@ PKGV = "30+git${GITPKGV}"
 
 PR = "r0"
 
-SRCREV = "518934b9d3a64a8772af7f9746f1be436747062f"
+SRCREV = "6e6881aa52b4a63b41beef509e5653747520df22"
 SRC_URI = " \
     git://github.com/samsamsam-iptvplayer/exteplayer3.git;branch=master \
 "
