@@ -9,7 +9,7 @@ ALLOW_EMPTY_${PN} = "1"
 PACKAGES = "${PN}"
 
 PV = "${IMAGE_VERSION}"
-PR = "r11"
+PR = "r14"
 
 DEPENDS = "enigma2-plugin-drivers-usbserial"
 RECOMMENDS = "enigma2-plugin-extensions-et-livestream"
@@ -24,7 +24,6 @@ RDEPENDS_${PN} = " \
     packagegroup-openplugins \
     meta-enigma2-dvdburn \
     enigma2-plugins \
-    enigma2-plugin-drivers-ntfs-3g \
     enigma2-plugin-drivers-exfat \
     enigma2-plugin-drivers-usbserial \
     enigma2-plugin-extensions-tuxcom \
@@ -38,14 +37,17 @@ RDEPENDS_${PN} = " \
     enigma2-plugin-extensions-youtube \
     enigma2-plugin-extensions-autobouquets \
     enigma2-plugin-extensions-iptvplayer \
-    ${@bb.utils.contains("GST_VERSION", "1.0", "eplayer5", "eplayer4", d)} \
+    ${@bb.utils.contains("TARGET_ARCH", "arm", "exteplayer3 enigma2-plugin-systemplugins-serviceapp" , "", d)} \
+    ${@bb.utils.contains("TARGET_ARCH", "mipsel", "exteplayer3 enigma2-plugin-systemplugins-serviceapp" , "", d)} \
+    ${@bb.utils.contains("TARGET_ARCH", "sh4", "exteplayer3 enigma2-plugin-systemplugins-serviceapp" , "gdb v4l-utils", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "legacykernel", "" , "evtest strace", d)} \
-    ${@bb.utils.contains("MACHINE_FEATURES", "omb", "enigma2-plugin-extensions-openmultiboot openmultiboot", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "vukodi", "enigma2-plugin-extensions-vuplus-kodi", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "xcorekodi", "enigma2-plugin-extensions-mx3l-kodi", "", d)} \
-    ${@bb.utils.contains("MACHINE_FEATURES", "webkithbbtv", "webkit-hbbtv-browser", "", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "webkithbbtv", "enigma2-plugin-extensions-webkithbbtv", "", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "nextv-hbbtv-browser", " enigma2-plugin-extensions-hbbtv-nextv", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "chromiumos", "enigma2-plugin-extensions-chromium", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "gles", "libmicrohttpd libnfs libshairport libtinyxml mysql5 yajl" , "", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "dvd", "bdremux replex mjpegtools dvdauthor dvd+rw-tools cdrkit cdfs cdtextinfo enigma2-plugin-extensions-cdinfo enigma2-plugin-extensions-dvdburn enigma2-plugin-extensions-dvdplayer ${GST_BASE_DVD}", "", d)} \
     autofs \
     autossh \
     avahi-ui \
@@ -76,7 +78,6 @@ RDEPENDS_${PN} = " \
     mtd-utils \
     nano \
     net-snmp \
-    ntfs-3g \
     ntp \
     ofgwrite \
     openresolv \
@@ -120,6 +121,7 @@ RDEPENDS_${PN} = " \
     zeroconf \
     zip \
     "
+
 
 RDEPENDS_${PN}_remove_wetekplay = "network-usb-drivers-meta"
 RDEPENDS_${PN}_remove_wetekplay2 = "network-usb-drivers-meta"
