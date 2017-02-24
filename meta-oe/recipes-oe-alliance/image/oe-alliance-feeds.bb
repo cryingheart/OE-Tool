@@ -9,7 +9,7 @@ ALLOW_EMPTY_${PN} = "1"
 PACKAGES = "${PN}"
 
 PV = "${IMAGE_VERSION}"
-PR = "r14"
+PR = "r15"
 
 DEPENDS = "enigma2-plugin-drivers-usbserial"
 RECOMMENDS = "enigma2-plugin-extensions-et-livestream"
@@ -24,6 +24,7 @@ RDEPENDS_${PN} = " \
     packagegroup-openplugins \
     meta-enigma2-dvdburn \
     enigma2-plugins \
+    enigma2-plugin-drivers-ntfs-3g \
     enigma2-plugin-drivers-exfat \
     enigma2-plugin-drivers-usbserial \
     enigma2-plugin-extensions-tuxcom \
@@ -37,10 +38,12 @@ RDEPENDS_${PN} = " \
     enigma2-plugin-extensions-youtube \
     enigma2-plugin-extensions-autobouquets \
     enigma2-plugin-extensions-iptvplayer \
+    ${@bb.utils.contains("GST_VERSION", "1.0", "eplayer5", "eplayer4", d)} \
     ${@bb.utils.contains("TARGET_ARCH", "arm", "exteplayer3 enigma2-plugin-systemplugins-serviceapp" , "", d)} \
     ${@bb.utils.contains("TARGET_ARCH", "mipsel", "exteplayer3 enigma2-plugin-systemplugins-serviceapp" , "", d)} \
     ${@bb.utils.contains("TARGET_ARCH", "sh4", "exteplayer3 enigma2-plugin-systemplugins-serviceapp" , "gdb v4l-utils", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "legacykernel", "" , "evtest strace", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "omb", "enigma2-plugin-extensions-openmultiboot openmultiboot", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "vukodi", "enigma2-plugin-extensions-vuplus-kodi", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "xcorekodi", "enigma2-plugin-extensions-mx3l-kodi", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "webkithbbtv", "enigma2-plugin-extensions-webkithbbtv", "", d)} \
@@ -78,7 +81,9 @@ RDEPENDS_${PN} = " \
     mtd-utils \
     nano \
     net-snmp \
+    ntfs-3g \
     ntp \
+    odhcp6c \
     ofgwrite \
     openresolv \
     openssh \
@@ -119,9 +124,15 @@ RDEPENDS_${PN} = " \
     wakelan \
     wget \
     zeroconf \
-    zip \
     "
 
+GST_BASE_DVD = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
+    gstreamer1.0-plugins-bad-videoparsersbad \
+    gstreamer1.0-plugins-bad-mpegtsmux \
+    ', ' \
+    gst-plugins-bad-videoparsersbad \
+    gst-plugins-bad-mpegtsmux \
+    ', d)}"
 
 RDEPENDS_${PN}_remove_wetekplay = "network-usb-drivers-meta"
 RDEPENDS_${PN}_remove_wetekplay2 = "network-usb-drivers-meta"

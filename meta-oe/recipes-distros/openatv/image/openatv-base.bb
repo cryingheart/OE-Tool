@@ -1,4 +1,3 @@
-
 SUMMARY = "Base packages require for image."
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
@@ -7,7 +6,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d
 ALLOW_EMPTY_${PN} = "1"
 
 PV = "1.0"
-PR = "r23"
+PR = "r24"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
@@ -19,12 +18,11 @@ RDEPENDS_${PN} = "\
     openatv-bootlogo \
     openatv-spinner \
     openssh-sftp-server \
-    ntfs-3g \
+    ${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "", "ntfs-3g ", d)} \
     hddtemp \
     busybox-cron \
     python-imaging \
     rtmpdump \
-	zip \
     packagegroup-base-smbfs-client \
     ${@bb.utils.contains("MACHINE_FEATURES", "dreamboxv1", "", "ofgwrite", d)} \
     ${@bb.utils.contains("TUNE_FEATURES", "armv", "glibc-compat", "", d)} \

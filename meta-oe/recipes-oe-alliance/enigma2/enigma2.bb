@@ -164,6 +164,9 @@ GST_BAD_RDEPS = " \
     gst-plugins-bad-faad \
     ', d)}"
 
+GST_BAD_OPUS = " \
+    ${@bb.utils.contains("TARGET_ARCH", "arm", " gstreamer1.0-plugins-base-opus gstreamer1.0-plugins-bad-opusparse", "", d)} \
+    "
 
 GST_UGLY_RDEPS = " \
     gstreamer1.0-plugins-ugly-amrnb \
