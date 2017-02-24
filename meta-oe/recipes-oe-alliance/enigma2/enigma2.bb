@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=751419260aa954499f7abaabaa882bbe"
 DEPENDS = " \
     freetype \
     gettext-native \
-    ${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "exteplayer3", "", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "libeplayer3", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "", "gstreamer1.0-plugins-base gstreamer1.0", d)} \
     jpeg \
     libdreamdvd libdvbsi++ libfribidi libmad libpng libsigc++-1.2 giflib libxml2 libxmlccwrap \
@@ -317,7 +317,7 @@ EXTRA_OECONF = " \
     --with-machinebuild="${MACHINEBUILD}" \
     --with-libsdl=no \
     --enable-dependency-tracking \
-    ${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "--enable-exteplayer3", "", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "--enable-libeplayer3", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "--disable-gstreamer", "--with-gstversion=1.0", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "textlcd", "--with-textlcd" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd", "--with-colorlcd" , "", d)} \
