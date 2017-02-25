@@ -38,10 +38,6 @@ RDEPENDS_${PN} = " \
     enigma2-plugin-extensions-youtube \
     enigma2-plugin-extensions-autobouquets \
     enigma2-plugin-extensions-iptvplayer \
-    ${@bb.utils.contains("GST_VERSION", "1.0", "eplayer5", "eplayer4", d)} \
-    ${@bb.utils.contains("TARGET_ARCH", "arm", "exteplayer3 enigma2-plugin-systemplugins-serviceapp" , "", d)} \
-    ${@bb.utils.contains("TARGET_ARCH", "mipsel", "exteplayer3 enigma2-plugin-systemplugins-serviceapp" , "", d)} \
-    ${@bb.utils.contains("TARGET_ARCH", "sh4", "exteplayer3 enigma2-plugin-systemplugins-serviceapp" , "gdb v4l-utils", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "legacykernel", "" , "evtest strace", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "omb", "enigma2-plugin-extensions-openmultiboot openmultiboot", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "vukodi", "enigma2-plugin-extensions-vuplus-kodi", "", d)} \
@@ -126,13 +122,6 @@ RDEPENDS_${PN} = " \
     zeroconf \
     "
 
-GST_BASE_DVD = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
-    gstreamer1.0-plugins-bad-videoparsersbad \
-    gstreamer1.0-plugins-bad-mpegtsmux \
-    ', ' \
-    gst-plugins-bad-videoparsersbad \
-    gst-plugins-bad-mpegtsmux \
-    ', d)}"
 
 RDEPENDS_${PN}_remove_wetekplay = "network-usb-drivers-meta"
 RDEPENDS_${PN}_remove_wetekplay2 = "network-usb-drivers-meta"
