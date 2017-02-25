@@ -39,18 +39,18 @@ RDEPENDS_${PN} = " \
     "
 
 GST_RRECOMMENDS = " \
-	ca-certificates \
-	glibc-gconv-utf-16 \
-	${GST_BASE_RDEPS} \
-	${GST_GOOD_RDEPS} \
-	${GST_BAD_RDEPS} \
-	${GST_UGLY_RDEPS} \
-	"
+    ca-certificates \
+    glibc-gconv-utf-16 \
+    ${GST_BASE_RDEPS} \
+    ${GST_GOOD_RDEPS} \
+    ${GST_BAD_RDEPS} \
+    ${GST_UGLY_RDEPS} \
+    "
 
 RRECOMMENDS_${PN} = " \
     glib-networking \
     glibc-gconv-utf-16 \
-    ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "GST_RRECOMMENDS", "gstreamer1.0-plugin-dvbmediasink", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "", "${GST_RRECOMMENDS} gstreamer1.0-plugin-dvbmediasink", d)} \
     "
 
 PYTHON_RDEPS = " \
