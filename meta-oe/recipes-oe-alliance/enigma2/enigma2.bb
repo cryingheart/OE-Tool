@@ -80,7 +80,7 @@ PYTHON_RDEPS = " \
     python-imaging \
     "
 
-GST_BASE_RDEPS = "\
+GST_BASE_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
     gstreamer1.0-plugins-base-alsa \
     gstreamer1.0-plugins-base-app \
     gstreamer1.0-plugins-base-audioconvert \
@@ -93,9 +93,21 @@ GST_BASE_RDEPS = "\
     gstreamer1.0-plugins-base-subparse \
     gstreamer1.0-plugins-base-typefindfunctions \
     gstreamer1.0-plugins-base-vorbis \
-    "
+    ', ' \
+    gst-plugins-base-alsa \
+    gst-plugins-base-app \
+    gst-plugins-base-audioconvert \
+    gst-plugins-base-audioresample \
+    gst-plugins-base-decodebin \
+    gst-plugins-base-decodebin2 \
+    gst-plugins-base-ogg \
+    gst-plugins-base-playbin \
+    gst-plugins-base-subparse \
+    gst-plugins-base-typefindfunctions \
+    gst-plugins-base-vorbis \
+    ', d)}"
 
-GST_GOOD_RDEPS = "\
+GST_GOOD_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
     gstreamer1.0-plugins-good-apetag \
     gstreamer1.0-plugins-good-audioparsers \
     gstreamer1.0-plugins-good-autodetect \
@@ -113,9 +125,26 @@ GST_GOOD_RDEPS = "\
     gstreamer1.0-plugins-good-udp \
     gstreamer1.0-plugins-good-wavparse \
     gstreamer1.0-plugins-good-wavpack \
-    "
+    ', ' \
+    gst-plugins-good-apetag \
+    gst-plugins-good-audioparsers \
+    gst-plugins-good-autodetect \
+    gst-plugins-good-avi \
+    gst-plugins-good-flac \
+    gst-plugins-good-flv \
+    gst-plugins-good-icydemux \
+    gst-plugins-good-id3demux \
+    gst-plugins-good-isomp4 \
+    gst-plugins-good-matroska \
+    gst-plugins-good-rtp \
+    gst-plugins-good-rtpmanager \
+    gst-plugins-good-rtsp \
+    gst-plugins-good-souphttpsrc \
+    gst-plugins-good-udp \
+    gst-plugins-good-wavparse \
+    ', d)}"
 
-GST_BAD_RDEPS = "\
+GST_BAD_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
     gstreamer1.0-plugins-bad-dashdemux \
     gstreamer1.0-plugins-bad-mms \
     gstreamer1.0-plugins-bad-mpegpsdemux \
@@ -126,16 +155,37 @@ GST_BAD_RDEPS = "\
     gstreamer1.0-plugins-bad-hls \
     gstreamer1.0-plugins-bad-videoparsersbad \
     gstreamer1.0-plugins-bad-autoconvert \
+    ', ' \
+    gst-plugins-bad-cdxaparse \
+    gst-plugins-bad-mms \
+    gst-plugins-bad-mpegdemux \
+    gst-plugins-bad-rtmp \
+    gst-plugins-bad-vcdsrc \
+    gst-plugins-bad-fragmented \
+    gst-plugins-bad-faad \
+    ', d)}"
+
+GST_BAD_OPUS = " \
+    ${@bb.utils.contains("TARGET_ARCH", "arm", " gstreamer1.0-plugins-base-opus gstreamer1.0-plugins-bad-opusparse", "", d)} \
     "
 
-GST_UGLY_RDEPS = "\
+GST_UGLY_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
     gstreamer1.0-plugins-ugly-amrnb \
     gstreamer1.0-plugins-ugly-amrwbdec \
     gstreamer1.0-plugins-ugly-asf \
     gstreamer1.0-plugins-ugly-cdio \
     gstreamer1.0-plugins-ugly-dvdsub \
     gstreamer1.0-plugins-ugly-mad \
-    "
+    ', ' \
+    gst-plugins-ugly-amrnb \
+    gst-plugins-ugly-amrwbdec \
+    gst-plugins-ugly-asf \
+    gst-plugins-ugly-cdio \
+    gst-plugins-ugly-dvdsub \
+    gst-plugins-ugly-mad \
+    gst-plugins-ugly-mpegaudioparse \
+    gst-plugins-ugly-mpegstream \
+    ', d)}"
 
 # DVD playback is integrated, we need the libraries
 RDEPENDS_${PN} += " \
@@ -246,7 +296,6 @@ SRC_URI_append_openxta = " \
 SRC_URI_append_openspa = " \
     file://skin_default.patch \
     "
-LDFLAGS_prepend = "${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "", " -lxml2 ", d)}"
 
 S = "${WORKDIR}/git"
 
@@ -268,6 +317,7 @@ EXTRA_OECONF = " \
     --with-machinebuild="${MACHINEBUILD}" \
     --with-libsdl=no \
     --enable-dependency-tracking \
+    ${@bb.utils.contains("GST_VERSION", "1.0", "--with-gstversion=1.0", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "--enable-libeplayer3", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "--disable-gstreamer", "--with-gstversion=1.0", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "textlcd", "--with-textlcd" , "", d)} \
@@ -289,6 +339,7 @@ EXTRA_OECONF = " \
     ${@bb.utils.contains("MACHINE_FEATURES", "osdanimation", "--with-osdanimation" , "", d)} \
     "
 
+LDFLAGS_prepend = "${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "", " -lxml2 ", d)}"
 
 # Swig generated 200k enigma.py file has no purpose for end users
 FILES_${PN}-dbg += "\
