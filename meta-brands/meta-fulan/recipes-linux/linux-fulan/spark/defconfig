@@ -1,7 +1,7 @@
 #
 # Automatically generated make config: don't edit
-# Linux kernel version: 2.6.32.61
-# Sat Mar  8 08:59:36 2014
+# Linux kernel version: 2.6.32.71
+# Mon Jun  6 21:01:54 2016
 #
 CONFIG_SUPERH=y
 CONFIG_SUPERH32=y
@@ -383,7 +383,8 @@ CONFIG_PACKET=y
 CONFIG_UNIX=y
 # CONFIG_NET_KEY is not set
 CONFIG_INET=y
-# CONFIG_IP_MULTICAST is not set
+CONFIG_IP_MULTICAST=y
+# CONFIG_IP_MROUTE is not set
 # CONFIG_IP_ADVANCED_ROUTER is not set
 CONFIG_IP_FIB_HASH=y
 CONFIG_IP_PNP=y
@@ -567,7 +568,7 @@ CONFIG_MTD_PHYSMAP=y
 # CONFIG_MTD_SLRAM is not set
 # CONFIG_MTD_PHRAM is not set
 # CONFIG_MTD_MTDRAM is not set
-CONFIG_MTD_BLOCK2MTD=y 
+CONFIG_MTD_BLOCK2MTD=m
 
 #
 # Disk-On-Chip Device Drivers
@@ -607,8 +608,7 @@ CONFIG_STM_NAND_SAFE_MOUNT=y
 # CONFIG_PARPORT is not set
 CONFIG_BLK_DEV=y
 # CONFIG_BLK_DEV_COW_COMMON is not set
-CONFIG_BLK_DEV_LOOP=y
-CONFIG_BLK_DEV_LOOP_MIN_COUNT=8
+# CONFIG_BLK_DEV_LOOP is not set
 # CONFIG_BLK_DEV_NBD is not set
 # CONFIG_BLK_DEV_UB is not set
 # CONFIG_BLK_DEV_RAM is not set
@@ -667,7 +667,7 @@ CONFIG_NETDEVICES=y
 # CONFIG_BONDING is not set
 # CONFIG_MACVLAN is not set
 # CONFIG_EQUALIZER is not set
-CONFIG_TUN=m
+CONFIG_TUN=y
 # CONFIG_VETH is not set
 CONFIG_NWHW_CONFIG=y
 CONFIG_PHYLIB=y
