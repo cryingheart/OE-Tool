@@ -10,13 +10,13 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/COPYING;md5=751419260aa954499f7abaabaa882b
 RDEPENDS_${PN} = "stinit"
 
 KV = "2.6.32.71-stm24-0217"
-SRCREV = "f0bd1d2493fc2e93568aa00f3bed3e3040dfb726"
+SRCREV = "6b0f816e19964747422b6c2ad32e1809c186bebf"
 
 inherit module
 
 PACKAGES = "${PN} ${PN}-dev"
 
-INC_PR = "r42"
+INC_PR = "r43"
 PV = "${KV}+${SRCDATE}"
 
 PTI_NP_PATH ?= "/data/pti_np"
@@ -29,8 +29,6 @@ SRC_URI = " \
     file://aotom_spark_procfs.patch;patch=1 \
     file://silence_tuner_printk.patch;patch=1 \
     file://silence_stmfb_printk.patch;patch=1 \
-    file://add_hdmi_colorspace_proc.patch;patch=1 \
-    file://add_stv090x_multistream.patch;patch=1 \
     file://ddbootup \
     file://sh4booster \
     file://modules.conf \
