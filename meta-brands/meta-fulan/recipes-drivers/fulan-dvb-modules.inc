@@ -27,8 +27,6 @@ SRC_URI = " \
     git://github.com/Duckbox-Developers/driver.git;protocol=git \
     file://${MACHINE}/pti.ko \
     file://aotom_spark_procfs.patch;patch=1 \
-    file://silence_tuner_printk.patch;patch=1 \
-    file://silence_stmfb_printk.patch;patch=1 \
     file://ddbootup \
     file://sh4booster \
     file://modules.conf \
