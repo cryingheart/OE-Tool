@@ -25,6 +25,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/fulan-dvb-modules:"
 
 SRC_URI = " \
     git://github.com/Duckbox-Developers/driver.git;protocol=git \
+    file://${MACHINE}/pti.ko \
     file://aotom_spark_procfs.patch;patch=1 \
     file://silence_avs_printk.patch;patch=1 \
     file://fix_videomode_names.patch;patch=1 \
@@ -140,13 +141,7 @@ do_install() {
 	install -m 0755 ${WORKDIR}/sh4booster ${D}${sysconfdir}/init.d
 	ln -sf ../init.d/sh4booster ${D}${sysconfdir}/rcS.d/S05sh4booster
 
-    # if no pti_np sources are available and a custom pti.ko is present, overwrite the tdt one
-    if [ ! -e ${PTI_NP_PATH}/Makefile ]; then
-        if [ -e ${PTI_NP_PATH}/pti.ko ]; then
-            echo "Found custom pti binary.." 
-            install -m 644 ${PTI_NP_PATH}/pti.ko ${D}/lib/modules/${KERNEL_VERSION}/extra/pti/pti.ko
-        fi
-    fi
+    install -m 644 ${WORKDIR}/${MACHINE}/pti.ko ${D}/lib/modules/${KERNEL_VERSION}/extra/pti/pti.ko
 
     find ${D} -name stmcore-display-sti7106.ko | xargs -r rm # we don't have a 7106 chip
 }
