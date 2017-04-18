@@ -1,5 +1,6 @@
---- C:/FFmpeg/configure	Tue Apr 18 15:25:53 2017
-+++ C:/configure.txt	Tue Apr 18 17:40:51 2017
+diff -uNr ffmpeg-3.3/configure ffmpeg-3.3_dash_demux/configure
+--- ffmpeg-3.3/configure	Tue Apr 18 15:25:53 2017
++++ ffmpeg-3.3_dash_demux/configure	Tue Apr 18 15:25:53 2017
 @@ -290,10 +290,11 @@
                             Windows if openssl and gnutls are not used [autodetect]
    --disable-sdl2           disable sdl2 [autodetect]
@@ -48,8 +49,9 @@
  disabled crystalhd || check_lib "stdint.h libcrystalhd/libcrystalhd_if.h" DtsCrystalHDVersion -lcrystalhd || disable crystalhd
  
  atan2f_args=2
---- C:/FFmpeg/libavformat/allformats.c	Tue Apr 18 15:26:46 2017
-+++ C:/allformats.c	Tue Apr 18 17:45:31 2017
+diff -uNr ffmpeg-3.3/libavformat/allformats.c ffmpeg-3.3_dash_demux/libavformat/allformats.c
+--- ffmpeg-3.3/libavformat/allformats.c	2016-12-06 00:28:54.000000000 +0100
++++ ffmpeg-3.3_dash_demux/libavformat/allformats.c	2017-01-31 23:46:22.850211062 +0100
 @@ -94,11 +94,11 @@
      REGISTER_DEMUXER (CDG,              cdg);
      REGISTER_DEMUXER (CDXL,             cdxl);
@@ -1870,8 +1872,9 @@ diff -uNr ffmpeg-3.3/libavformat/dashdec.c ffmpeg-3.3_dash_demux/libavformat/das
 +    .read_seek      = dash_read_seek,
 +    .flags          = AVFMT_NO_BYTE_SEEK,
 +};
---- C:/FFmpeg/libavformat/Makefile	Tue Apr 18 15:26:46 2017
-+++ C:/Makefile.mak	Tue Apr 18 17:52:32 2017
+diff -uNr ffmpeg-3.3/libavformat/Makefile ffmpeg-3.3_dash_demux/libavformat/Makefile
+--- ffmpeg-3.3/libavformat/Makefile	2016-12-06 00:28:54.000000000 +0100
++++ ffmpeg-3.3_dash_demux/libavformat/Makefile	2017-01-31 23:46:22.854211062 +0100
 @@ -132,10 +132,11 @@
  OBJS-$(CONFIG_CONCAT_DEMUXER)            += concatdec.o
  OBJS-$(CONFIG_CRC_MUXER)                 += crcenc.o
