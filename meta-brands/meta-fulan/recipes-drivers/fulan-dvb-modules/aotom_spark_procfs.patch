@@ -314,7 +314,7 @@ new file mode 100644
 index 0000000..931caab
 --- /dev/null
 +++ b/frontcontroller/aotom_spark/aotom_procfs.c
-@@ -0,0 +1,760 @@
+@@ -0,0 +1,759 @@
 +/*
 + * aotom_procfs.c
 + *
