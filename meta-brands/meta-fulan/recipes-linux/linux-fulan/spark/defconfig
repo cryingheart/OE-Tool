@@ -1,7 +1,7 @@
 #
 # Automatically generated make config: don't edit
-# Linux kernel version: 2.6.32.61
-# Sat Mar  8 08:59:36 2014
+# Linux kernel version: 2.6.32.71
+# Mon Jun  6 21:01:54 2016
 #
 CONFIG_SUPERH=y
 CONFIG_SUPERH32=y
@@ -383,7 +383,8 @@ CONFIG_PACKET=y
 CONFIG_UNIX=y
 # CONFIG_NET_KEY is not set
 CONFIG_INET=y
-# CONFIG_IP_MULTICAST is not set
+CONFIG_IP_MULTICAST=y
+# CONFIG_IP_MROUTE is not set
 # CONFIG_IP_ADVANCED_ROUTER is not set
 CONFIG_IP_FIB_HASH=y
 CONFIG_IP_PNP=y

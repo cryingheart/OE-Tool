@@ -3,19 +3,18 @@ RSUGGESTS_${PN} = ""
 PROVIDES =+ " libavcodec53 libavformat53 libav"
 PACKAGES =+ " libavcodec53 libavformat53 libav"
 
-PR = "r9"
+PR = "r10"
 
 DEPENDS = "libbluray rtmpdump libxml2 openssl librtmp virtual/libsdl"
 RDEPENDS_${PN} = "libbluray rtmpdump libxml2 openssl"
 
 SRC_URI_append = " \
     file://ffmpeg-fix-hls.patch \
-    file://ffmpeg-buffer-size.patch \
     file://ffmpeg-aac.patch \
+    file://ffmpeg-buffer-size.patch \
+    file://add_dash_demux.patch \
     file://ffmpeg-fix-mpegts.patch \
     file://ffmpeg-fix-edit-list-parsing.patch \
-    file://add_dash_demux.patch \
-    file://allow_to_choose_rtmp_impl_at_runtime.patch \
 "
 
 EXTRA_FFCONF = " \
