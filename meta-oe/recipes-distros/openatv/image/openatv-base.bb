@@ -19,6 +19,7 @@ RDEPENDS_${PN} = "\
     openatv-bootlogo \
     openatv-spinner \
     openssh-sftp-server \
+    ${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "", "iproute2 ", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "", "ntfs-3g ", d)} \
     hddtemp \
     busybox-cron \
@@ -29,5 +30,4 @@ RDEPENDS_${PN} = "\
     ${@bb.utils.contains("MACHINE_FEATURES", "dreamboxv1", "", "ofgwrite", d)} \
     ${@bb.utils.contains("TUNE_FEATURES", "armv", "glibc-compat", "", d)} \
     bash \
-    zip \
     "
