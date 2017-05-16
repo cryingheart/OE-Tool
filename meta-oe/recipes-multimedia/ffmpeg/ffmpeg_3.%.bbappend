@@ -12,7 +12,6 @@ SRC_URI_append = " \
     file://ffmpeg-fix-hls.patch \
     file://ffmpeg-aac.patch \
     file://ffmpeg-buffer-size.patch \
-    file://add_dash_demux.patch \
     file://ffmpeg-fix-mpegts.patch \
     file://ffmpeg-fix-edit-list-parsing.patch \
 "
@@ -242,6 +241,7 @@ EXTRA_FFCONF = " \
     --disable-bsfs \
     --enable-libbluray \
     --enable-protocol=bluray \
+    --enable-librtmp \
     --pkg-config="pkg-config" \
     --disable-debug \
     --extra-cflags="${TARGET_CFLAGS} ${HOST_CC_ARCH}${TOOLCHAIN_OPTIONS} -ffunction-sections -fdata-sections -fno-aggressive-loop-optimizations" \
