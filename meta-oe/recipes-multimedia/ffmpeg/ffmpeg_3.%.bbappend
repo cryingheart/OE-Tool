@@ -14,6 +14,8 @@ SRC_URI_append = " \
     file://ffmpeg-buffer-size.patch \
     file://ffmpeg-fix-mpegts.patch \
     file://ffmpeg-fix-edit-list-parsing.patch \
+    file://add_dash_demux.patch \
+    file://allow_to_choose_rtmp_impl_at_runtime.patch \
 "
 
 EXTRA_FFCONF = " \
