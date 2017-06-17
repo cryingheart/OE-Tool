@@ -11,17 +11,7 @@ DEPENDS = " \
     jpeg \
     libdreamdvd libdvbsi++ libfribidi libmad libpng giflib libxml2 libxmlccwrap \
     ${@bb.utils.contains('DISTRO_FEATURES', 'libsigc2', 'libsigc++-2.0', 'libsigc++-1.2', d)} \
-    openssl \
-    ${@bb.utils.contains("DISTRO_NAME", "openmips", "avahi libudfread", "", d)} \
-    ${@bb.utils.contains("DISTRO_NAME", "openatv", "avahi libudfread", "", d)} \
-    ${@bb.utils.contains("DISTRO_NAME", "opennfr", "avahi libudfread", "", d)} \
-    ${@bb.utils.contains("DISTRO_NAME", "egami", "avahi libudfread", "", d)} \
-    ${@bb.utils.contains("DISTRO_NAME", "openvix", "avahi libudfread", "", d)} \
-    ${@bb.utils.contains("DISTRO_NAME", "openbh", "avahi libudfread", "", d)} \
-    ${@bb.utils.contains("DISTRO_NAME", "openspa", "avahi libudfread", "", d)} \
-    ${@bb.utils.contains("DISTRO_NAME", "opendroid", "avahi libudfread", "", d)} \
-    ${@bb.utils.contains("DISTRO_NAME", "opendhdf", "avahi libudfread", "", d)} \
-    ${@bb.utils.contains("DISTRO_NAME", "openeight", "avahi libudfread", "", d)} \
+    openssl avahi libudfread \
     python python-imaging python-twisted python-wifi \
     swig-native \
     tuxtxt-enigma2 \
@@ -123,7 +113,7 @@ GST_GOOD_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
     gstreamer1.0-plugins-good-rtp \
     gstreamer1.0-plugins-good-rtpmanager \
     gstreamer1.0-plugins-good-rtsp \
-    gstreamer1.0-plugins-good-souphttpsrc \
+    gstreamer1.0-plugins-good-soup \
     gstreamer1.0-plugins-good-udp \
     gstreamer1.0-plugins-good-wavparse \
     gstreamer1.0-plugins-good-wavpack \
@@ -237,7 +227,7 @@ inherit autotools-brokensep gitpkgv pkgconfig pythonnative
 
 PV = "${IMAGE_VERSION}+git${SRCPV}"
 PKGV = "${IMAGE_VERSION}+git${GITPKGV}"
-PR = "r5"
+PR = "r4"
 
 SRC_URI = "${ENIGMA2_URI}"
 
