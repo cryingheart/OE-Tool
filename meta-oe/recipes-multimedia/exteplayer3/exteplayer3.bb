@@ -12,6 +12,9 @@ inherit gitpkgv
 PV = "34+gitr${SRCPV}"
 PKGV = "34+gitr${GITPKGV}"
 
+PR = "r0"
+
+SRCREV = "4b03810d387a17427237817ea3e44832d86548fb"
 SRC_URI = "git://github.com/samsamsam-iptvplayer/exteplayer3.git;branch=master"
 
 S = "${WORKDIR}/git/"
