@@ -16,7 +16,7 @@ inherit module
 
 PACKAGES = "${PN} ${PN}-dev"
 
-INC_PR = "r43"
+INC_PR = "r44"
 PV = "${KV}+${SRCDATE}"
 
 PTI_NP_PATH ?= "/data/pti_np"
@@ -27,6 +27,7 @@ SRC_URI = " \
     git://github.com/Duckbox-Developers/driver.git;protocol=git \
     file://${MACHINE}/pti.ko \
     file://aotom_spark_procfs.patch;patch=1 \
+    file://aotom_disable_led1_pattern.patch;patch=1 \
     file://silence_avs_printk.patch;patch=1 \
     file://fix_videomode_names.patch;patch=1 \
     file://ddbootup \
@@ -128,6 +129,7 @@ do_install() {
     install -m 644 include/player2/JPEGDECHW_VideoTransformerTypes.h ${D}/${includedir}
     install -m 644 include/player2/PNGDecode_interface.h ${D}/${includedir}
     install -m 644 include/player2/RLEDecode_interface.h ${D}/${includedir}
+    install -m 644 frontcontroller/aotom_spark/aotom_main.h ${D}/${includedir}
 
     #install modutils config
     install -d ${D}/${sysconfdir}/modules-load.d
