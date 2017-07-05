@@ -1,17 +1,25 @@
 RSUGGESTS_${PN} = ""
 
-PROVIDES =+ " libavcodec53 libavformat53 libav"
-PACKAGES =+ " libavcodec53 libavformat53 libav"
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+
+DEPENDS = "alsa-lib libxml2"
+
+PACKAGECONFIG[librtmp] = "--enable-librtmp,--disable-librtmp,rtmpdump"
+PACKAGECONFIG[libbluray] = "--enable-libbluray --enable-protocol=bluray,--disable-libbluray,libbluray"
+PACKAGECONFIG[libfreetype] = "--enable-libfreetype,--disable-libfreetype,freetype"
 
 PR = "r10"
 
-DEPENDS = "libbluray rtmpdump libxml2 openssl librtmp virtual/libsdl"
-RDEPENDS_${PN} = "libbluray rtmpdump libxml2 openssl"
+PACKAGECONFIG = "avdevice avfilter avcodec avformat avresample swscale swresample \
+		bzlib gpl x264 openssl libbluray libfreetype librtmp"
+
+
+MIPSFPU = "${@bb.utils.contains('TARGET_FPU', 'soft', '--disable-mipsfpu', '--enable-mipsfpu', d)}"
 
 SRC_URI_append = " \
     file://ffmpeg-fix-hls.patch \
-    file://ffmpeg-buffer-size.patch \
     file://ffmpeg-aac.patch \
+    file://ffmpeg-buffer-size.patch \
     file://ffmpeg-fix-mpegts.patch \
     file://ffmpeg-fix-edit-list-parsing.patch \
     file://add_dash_demux.patch \
@@ -53,9 +61,26 @@ EXTRA_FFCONF = " \
     --disable-fast-unaligned \
     --disable-muxers \
     --enable-muxer=mpeg1video \
+    --enable-muxer=h264 \
+    --enable-muxer=mp4 \
+    --enable-muxer=image2 \
+    --enable-muxer=mjpeg \
+    --enable-muxer=rawvideo \
+    --enable-muxer=mpeg2video \
+    --enable-muxer=matroska \
+    --enable-muxer=m4v \
+    --enable-muxer=image2pipe \
+    --enable-muxer=apng \
+    --enable-muxer=mpegts \
     --enable-encoders \
     --enable-encoder=mpeg1video \
     --enable-encoder=png \
+    --enable-encoder=libx264 \
+    --enable-encoder=ljpeg \
+    --enable-encoder=mpeg4 \
+    --enable-encoder=jpeg2000 \
+    --enable-encoder=jpegls \
+    --enable-encoder=rawvideo \
     --disable-decoders \
     --enable-decoder=alac \
     --enable-decoder=ape \
@@ -63,6 +88,7 @@ EXTRA_FFCONF = " \
     --enable-decoder=atrac3 \
     --enable-decoder=atrac3p \
     --enable-decoder=cook \
+    --enable-decoder=dca \
     --enable-decoder=dsd_lsbf \
     --enable-decoder=dsd_lsbf_planar \
     --enable-decoder=dsd_msbf \
@@ -76,8 +102,13 @@ EXTRA_FFCONF = " \
     --enable-decoder=mace6 \
     --enable-decoder=metasound \
     --enable-decoder=mjpeg \
+    --enable-decoder=h264 \
+    --enable-decoder=mpeg4 \
+    --enable-decoder=jpeg2000 \
+    --enable-decoder=jpegls \
     --enable-decoder=mlp \
     --enable-decoder=mp1 \
+    --enable-decoder=mp3 \
     --enable-decoder=mp3adu \
     --enable-decoder=mp3on4 \
     --enable-decoder=mpeg1video \
@@ -112,6 +143,7 @@ EXTRA_FFCONF = " \
     --enable-decoder=pcm_u32le \
     --enable-decoder=pcm_u8 \
     --enable-decoder=pcm_zork \
+    --enable-decoder=png \
     --enable-decoder=ra_144 \
     --enable-decoder=ra_288 \
     --enable-decoder=ralf \
@@ -130,6 +162,7 @@ EXTRA_FFCONF = " \
     --enable-decoder=wmavoice \
     --enable-decoder=aac \
     --enable-decoder=aac_latm \
+    --enable-decoder=libfdk_aac \
     --enable-decoder=adpcm_ct \
     --enable-decoder=adpcm_g722 \
     --enable-decoder=adpcm_g726 \
@@ -149,7 +182,6 @@ EXTRA_FFCONF = " \
     --enable-decoder=g723_1 \
     --enable-decoder=g729 \
     --enable-decoder=opus \
-    --enable-decoder=png \
     --enable-decoder=qcelp \
     --enable-decoder=qdm2 \
     --enable-decoder=vorbis \
@@ -159,7 +191,6 @@ EXTRA_FFCONF = " \
     --disable-demuxer=afc \
     --disable-demuxer=anm \
     --disable-demuxer=apc \
-    --disable-demuxer=apng \
     --disable-demuxer=ast \
     --disable-demuxer=avs \
     --disable-demuxer=bethsoftvid \
@@ -176,7 +207,6 @@ EXTRA_FFCONF = " \
     --disable-demuxer=ea \
     --disable-demuxer=ea_cdata \
     --disable-demuxer=frm \
-    --disable-demuxer=gif \
     --disable-demuxer=gsm \
     --disable-demuxer=gxf \
     --disable-demuxer=hnm \
@@ -194,7 +224,6 @@ EXTRA_FFCONF = " \
     --disable-demuxer=rsd \
     --disable-demuxer=rso \
     --disable-demuxer=siff \
-    --disable-demuxer=smjpeg \
     --disable-demuxer=smush \
     --disable-demuxer=sol \
     --disable-demuxer=thp \
@@ -208,51 +237,44 @@ EXTRA_FFCONF = " \
     --disable-demuxer=xa \
     --disable-demuxer=xbin \
     --disable-demuxer=yop \
-    --enable-demuxer=image2 \
-    --disable-demuxer=image2pipe \
     --disable-demuxer=ingenient \
-    --disable-demuxer=image_bmp_pipe \
     --disable-demuxer=image_dds_pipe \
     --disable-demuxer=image_dpx_pipe \
     --disable-demuxer=image_exr_pipe \
     --disable-demuxer=image_j2k_pipe \
-    --disable-demuxer=image_jpegls_pipe \
     --disable-demuxer=image_pictor_pipe \
-    --disable-demuxer=image_png_pipe \
     --disable-demuxer=image_qdraw_pipe \
     --disable-demuxer=image_sgi_pipe \
     --disable-demuxer=image_sunrast_pipe \
-    --disable-demuxer=image_tiff_pipe \
-    --disable-demuxer=image_webp_pipe \
-    --disable-demuxer=image_jpeg_pipe \
+    --enable-demuxer=image2 \
+    --enable-demuxer=image2pipe \
+    --enable-demuxer=m4v \
+    --enable-demuxer=mpegts \
+    --enable-demuxer=apng \
+    --enable-demuxer=image_jpeg_pipe \
+    --enable-demuxer=image_jpegls_pipe \
+    --enable-demuxer=image_png_pipe \
+    --enable-demuxer=realtext \
+    --enable-demuxer=rawvideo \
+    --enable-demuxer=ffmetadata \
+    --enable-demuxer=image_bmp_pipe \
+    --enable-demuxer=matroska \
+    --enable-demuxer=mp4 \
+    --enable-demuxer=h264 \
+    --enable-demuxer=mpegvideo \
+    --enable-parser=h264 \
+    --enable-parser=mjpeg \
+    --enable-parser=mpeg4video \
+    --enable-parser=mpegvideo \
+    --enable-parser=png \
     --disable-filters \
     --enable-filter=scale \
-    --disable-protocol=data \
-    --disable-protocol=icecast \
-    --disable-protocol=md5 \
-    --disable-protocol=pipe \
-    --disable-protocol=unix \
-    --disable-mips32r2 \
-    --disable-mipsdsp \
-    --disable-mipsdspr2 \
-    --disable-mipsdsp \
-    --disable-indevs \
-    --disable-outdevs \
-    --enable-bzlib \
-    --enable-zlib \
-    --disable-bsfs \
-    --enable-libbluray \
-    --enable-protocol=bluray \
-    --enable-librtmp \
-    --pkg-config="pkg-config" \
+    --enable-filter=drawtext \
+    ${@bb.utils.contains("TARGET_ARCH", "arm", "", "${MIPSFPU}", d)} \
     --disable-debug \
+    --pkg-config="pkg-config" \
+    --enable-zlib \
     --extra-cflags="${TARGET_CFLAGS} ${HOST_CC_ARCH}${TOOLCHAIN_OPTIONS} -ffunction-sections -fdata-sections -fno-aggressive-loop-optimizations" \
     --extra-ldflags="${TARGET_LDFLAGS},--gc-sections -Wl,--print-gc-sections,-lrt" \
     --prefix=${prefix} \
 "
-
-PACKAGECONFIG = "avdevice avfilter avcodec avformat swresample swscale openssl bzlib"
-
-FILES_${PN}-dbg += "/usr/share"
-
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
