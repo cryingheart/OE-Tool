@@ -72,7 +72,7 @@ PYTHON_RDEPS = " \
     python-imaging \
     "
 
-GST_BASE_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
+GST_BASE_RDEPS = "\
     gstreamer1.0-plugins-base-alsa \
     gstreamer1.0-plugins-base-app \
     gstreamer1.0-plugins-base-audioconvert \
@@ -89,7 +89,7 @@ GST_BASE_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
 	gstreamer1.0-plugins-base-rawparse \
 	"
 
-GST_GOOD_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
+GST_GOOD_RDEPS = "\
     gstreamer1.0-plugins-good-apetag \
     gstreamer1.0-plugins-good-audioparsers \
     gstreamer1.0-plugins-good-autodetect \
@@ -109,7 +109,7 @@ GST_GOOD_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
     gstreamer1.0-plugins-good-wavpack \
 	"
 
-GST_BAD_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
+GST_BAD_RDEPS = "\
 	gstreamer1.0-plugins-bad-autoconvert \
     gstreamer1.0-plugins-bad-dashdemux \
     gstreamer1.0-plugins-bad-mms \
@@ -123,7 +123,7 @@ GST_BAD_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
     gstreamer1.0-plugins-bad-videoparsersbad \
     "
 
-GST_UGLY_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
+GST_UGLY_RDEPS = "\
     gstreamer1.0-plugins-ugly-amrnb \
     gstreamer1.0-plugins-ugly-amrwbdec \
     gstreamer1.0-plugins-ugly-asf \
