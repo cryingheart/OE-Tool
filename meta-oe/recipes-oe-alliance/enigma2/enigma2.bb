@@ -32,6 +32,7 @@ RDEPENDS_${PN} = " \
 
 GST_RRECOMMENDS = " \
     ca-certificates \
+	gstreamer1.0-plugin-subsink \
     ${GST_BASE_RDEPS} \
     ${GST_GOOD_RDEPS} \
     ${GST_BAD_RDEPS} \
@@ -80,24 +81,13 @@ GST_BASE_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
     gstreamer1.0-plugins-base-videoconvert \
     gstreamer1.0-plugins-base-ivorbisdec \
     gstreamer1.0-plugins-base-ogg \
+	gstreamer1.0-plugins-base-opus \
     gstreamer1.0-plugins-base-playback \
     gstreamer1.0-plugins-base-subparse \
     gstreamer1.0-plugins-base-typefindfunctions \
     gstreamer1.0-plugins-base-vorbis \
 	gstreamer1.0-plugins-base-rawparse \
-    ', ' \
-    gst-plugins-base-alsa \
-    gst-plugins-base-app \
-    gst-plugins-base-audioconvert \
-    gst-plugins-base-audioresample \
-    gst-plugins-base-decodebin \
-    gst-plugins-base-decodebin2 \
-    gst-plugins-base-ogg \
-    gst-plugins-base-playbin \
-    gst-plugins-base-subparse \
-    gst-plugins-base-typefindfunctions \
-    gst-plugins-base-vorbis \
-    ', d)}"
+	"
 
 GST_GOOD_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
     gstreamer1.0-plugins-good-apetag \
@@ -117,26 +107,10 @@ GST_GOOD_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
     gstreamer1.0-plugins-good-udp \
     gstreamer1.0-plugins-good-wavparse \
     gstreamer1.0-plugins-good-wavpack \
-    ', ' \
-    gst-plugins-good-apetag \
-    gst-plugins-good-audioparsers \
-    gst-plugins-good-autodetect \
-    gst-plugins-good-avi \
-    gst-plugins-good-flac \
-    gst-plugins-good-flv \
-    gst-plugins-good-icydemux \
-    gst-plugins-good-id3demux \
-    gst-plugins-good-isomp4 \
-    gst-plugins-good-matroska \
-    gst-plugins-good-rtp \
-    gst-plugins-good-rtpmanager \
-    gst-plugins-good-rtsp \
-    gst-plugins-good-souphttpsrc \
-    gst-plugins-good-udp \
-    gst-plugins-good-wavparse \
-    ', d)}"
+	"
 
 GST_BAD_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
+	gstreamer1.0-plugins-bad-autoconvert \
     gstreamer1.0-plugins-bad-dashdemux \
     gstreamer1.0-plugins-bad-mms \
     gstreamer1.0-plugins-bad-mpegpsdemux \
@@ -145,20 +119,8 @@ GST_BAD_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
     gstreamer1.0-plugins-bad-smoothstreaming \
     gstreamer1.0-plugins-bad-faad \
     gstreamer1.0-plugins-bad-hls \
+	gstreamer1.0-plugins-bad-opusparse \
     gstreamer1.0-plugins-bad-videoparsersbad \
-    gstreamer1.0-plugins-bad-autoconvert \
-    ', ' \
-    gst-plugins-bad-cdxaparse \
-    gst-plugins-bad-mms \
-    gst-plugins-bad-mpegdemux \
-    gst-plugins-bad-rtmp \
-    gst-plugins-bad-vcdsrc \
-    gst-plugins-bad-fragmented \
-    gst-plugins-bad-faad \
-    ', d)}"
-
-GST_BAD_OPUS = " \
-    ${@bb.utils.contains("TARGET_ARCH", "arm", " gstreamer1.0-plugins-base-opus gstreamer1.0-plugins-bad-opusparse", "", d)} \
     "
 
 GST_UGLY_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
@@ -167,21 +129,7 @@ GST_UGLY_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
     gstreamer1.0-plugins-ugly-asf \
     gstreamer1.0-plugins-ugly-cdio \
     gstreamer1.0-plugins-ugly-dvdsub \
-    gstreamer1.0-plugins-ugly-mad \
-    ', ' \
-    gst-plugins-ugly-amrnb \
-    gst-plugins-ugly-amrwbdec \
-    gst-plugins-ugly-asf \
-    gst-plugins-ugly-cdio \
-    gst-plugins-ugly-dvdsub \
-    gst-plugins-ugly-mad \
-    gst-plugins-ugly-mpegaudioparse \
-    gst-plugins-ugly-mpegstream \
-    ', d)}"
-
-# DVD playback is integrated, we need the libraries
-RDEPENDS_${PN} += " \
-    libdreamdvd \
+	gstreamer1.0-plugins-ugly-mpg123 \
     "
 
 RRECOMMENDS_${PN} += "libdvdcss"
