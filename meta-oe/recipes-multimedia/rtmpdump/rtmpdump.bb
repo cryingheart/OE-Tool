@@ -10,7 +10,7 @@ inherit autotools-brokensep gitpkgv
 SRCREV = "${AUTOREV}"
 PKGV = "2.48+git${GITPKGV}"
 PV = "2.48+git${SRCPV}"
-PR = "r7"
+PR = "r8"
 
 SRC_URI = "git://github.com/oe-alliance/rtmpdump.git;protocol=git"
 
