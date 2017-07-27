@@ -29,6 +29,8 @@ SRC_URI_append = " \
 EXTRA_FFCONF = " \
     --disable-static \
     --disable-runtime-cpudetect \
+    --disable-ffserver \
+    --disable-ffplay \
     --enable-ffprobe \
     --disable-altivec \
     --disable-amd3dnow \
