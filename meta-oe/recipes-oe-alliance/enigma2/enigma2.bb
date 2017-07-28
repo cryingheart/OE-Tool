@@ -30,19 +30,16 @@ RDEPENDS_${PN} = " \
     oe-alliance-branding \
     "
 
-GST_RRECOMMENDS = " \
-    ca-certificates \
+RRECOMMENDS_${PN} = " \
+	glib-networking \
+	glibc-gconv-utf-16 \
+    ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "GST_RRECOMMENDS", "gstreamer1.0-plugin-dvbmediasink", d)} \
+	${@bb.utils.contains("TARGET_ARCH", "sh4", "", " \
 	gstreamer1.0-plugin-subsink \
     ${GST_BASE_RDEPS} \
     ${GST_GOOD_RDEPS} \
     ${GST_BAD_RDEPS} \
-    ${GST_UGLY_RDEPS} \
-    "
-
-RRECOMMENDS_${PN} = " \
-    glib-networking \
-    glibc-gconv-utf-16 \
-    ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "GST_RRECOMMENDS", "gstreamer1.0-plugin-dvbmediasink", d)} \
+	${GST_UGLY_RDEPS}", d)} \
     "
 
 PYTHON_RDEPS = " \
