@@ -22,7 +22,6 @@ RDEPENDS_${PN} = "\
     ${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "", "iproute2 ", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "", "ntfs-3g ", d)} \
     exteplayer3 \
-    gstplayer \
     ffmpeg \
     hddtemp \
     busybox-cron \

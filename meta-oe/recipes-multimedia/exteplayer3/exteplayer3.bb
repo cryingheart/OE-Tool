@@ -9,17 +9,16 @@ RDEPENDS_${PN} = "ffmpeg"
 
 inherit gitpkgv
 
-PV = "34+gitr${SRCPV}"
-PKGV = "34+gitr${GITPKGV}"
+PV = "35+gitr${SRCPV}"
+PKGV = "35+gitr${GITPKGV}"
 
 PR = "r0"
 
-SRCREV = "4b03810d387a17427237817ea3e44832d86548fb"
-SRC_URI = " \
-    git://github.com/samsamsam-iptvplayer/exteplayer3.git;branch=master \
-"
+SRCREV = "f55def46514c5a93f99bb203ad904dcde6d11e16"
+SRC_URI = "git://github.com/samsamsam-iptvplayer/exteplayer3.git;branch=master"
 
 S = "${WORKDIR}/git/"
+
 
 SOURCE_FILES = "main/exteplayer.c"
 SOURCE_FILES =+ "container/container.c"
@@ -77,12 +76,10 @@ output/writer/mipsel/wmv.c \
 output/writer/mipsel/vc1.c ", d)}"
 
 do_compile() {
-    ${CC} ${SOURCE_FILES} -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE -DHAVE_FLV2MPEG4_CONVERTER -I${S}/include -I${S}/external -I${S}/external/flv2mpeg4 -I${D}/${libdir} -I${D}/${includedir} -lpthread -lavformat -lavcodec -lavutil -lswresample -o exteplayer3
+    ${CC} ${SOURCE_FILES} -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE -DHAVE_FLV2MPEG4_CONVERTER -I${S}/include -I${S}/external -I${S}/external/flv2mpeg4 -I${D}/${libdir} -I${D}/${includedir} -lpthread -lavformat -lavcodec -lavutil -lswresample -o exteplayer3 ${LDFLAGS}
 }
 
 do_install() {
     install -d ${D}${bindir}
     install -m 0755 ${S}/exteplayer3 ${D}${bindir}
 }
-
-INSANE_SKIP_${PN} += "ldflags"
