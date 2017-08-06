@@ -18,7 +18,6 @@ MIPSFPU = "${@bb.utils.contains('TARGET_FPU', 'soft', '--disable-mipsfpu', '--en
 
 SRC_URI_append = " \
     file://ffmpeg-fix-hls.patch \
-    file://ffmpeg-aac.patch \
     file://ffmpeg-buffer-size.patch \
     file://ffmpeg-fix-mpegts.patch \
     file://ffmpeg-fix-edit-list-parsing.patch \
