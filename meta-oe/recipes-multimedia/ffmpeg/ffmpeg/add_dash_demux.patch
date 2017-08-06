@@ -1,18 +1,14 @@
 diff -uNr ffmpeg-3.3/configure ffmpeg-3.3_dash_demux/configure
 --- ffmpeg-3.3/configure	Tue Apr 18 15:25:53 2017
 +++ ffmpeg-3.3_dash_demux/configure	Tue Apr 18 15:25:53 2017
-@@ -290,10 +290,11 @@
-                            Windows if openssl and gnutls are not used [autodetect]
-   --disable-sdl2           disable sdl2 [autodetect]
-   --disable-securetransport disable Secure Transport, needed for TLS support
+@@ -290,8 +290,9 @@
                             on OSX if openssl and gnutls are not used [autodetect]
+															 
    --disable-xlib           disable xlib [autodetect]
 +  --disable-xml2           disable XML parsing using the C library libxml2 [autodetect]
    --disable-zlib           disable zlib [autodetect]
  
    The following libraries provide various hardware acceleration features:
-   --disable-audiotoolbox   disable Apple AudioToolbox code [autodetect]
-   --disable-cuda           disable dynamically linked Nvidia CUDA code [autodetect]
 @@ -1479,10 +1480,11 @@
      schannel
      sdl
@@ -1262,7 +1258,7 @@ diff -uNr ffmpeg-3.3/libavformat/dashdec.c ffmpeg-3.3_dash_demux/libavformat/das
 +                num = pls->first_seq_no;
 +        }
 +        else {
-+        num = pls->first_seq_no + (((GetCurrentTimeInSec() - c->availabilityStartTimeSec) - c->presentationDelaySec) * pls->segmentTimescalce) / pls->segmentDuration;
++            num = pls->first_seq_no + (((GetCurrentTimeInSec() - c->availabilityStartTimeSec) - c->presentationDelaySec) * pls->segmentTimescalce) / pls->segmentDuration;
 +        }
 +    } else {
 +        num = pls->first_seq_no;
@@ -1285,22 +1281,22 @@ diff -uNr ffmpeg-3.3/libavformat/dashdec.c ffmpeg-3.3_dash_demux/libavformat/das
 +{
 +    int64_t num = 0;
 +
-+        if (pls->n_segments) {
-+            num = pls->first_seq_no + pls->n_segments - 1;
-+        } else if (pls->n_timelines) {
-+            int i = 0;
-+            num = pls->first_seq_no + pls->n_timelines - 1;
-+            for (i=0; i<pls->n_timelines; ++i) {
-+                num += pls->timelines[i]->r;
-+            }
++    if (pls->n_segments) {
++        num = pls->first_seq_no + pls->n_segments - 1;
++    } else if (pls->n_timelines) {
++        int i = 0;
++        num = pls->first_seq_no + pls->n_timelines - 1;
++        for (i=0; i<pls->n_timelines; ++i) {
++            num += pls->timelines[i]->r;
 +        }
++    }
 +    else if (c->is_live) {
 +        num = pls->first_seq_no + (((GetCurrentTimeInSec() - c->availabilityStartTimeSec)) * pls->segmentTimescalce)  / pls->segmentDuration;
 +    }
-+        else {
-+            num = pls->first_seq_no + (c->mediaPresentationDurationSec * pls->segmentTimescalce) / pls->segmentDuration;
-+        }
-+            
++    else {
++        num = pls->first_seq_no + (c->mediaPresentationDurationSec * pls->segmentTimescalce) / pls->segmentDuration;
++    }
++
 +    return num;
 +}
 +
@@ -1428,7 +1424,7 @@ diff -uNr ffmpeg-3.3/libavformat/dashdec.c ffmpeg-3.3_dash_demux/libavformat/das
 +    if (ret < 0) {
 +        goto cleanup;
 +    }
-+
++    
 +    /* Seek to the requested position. If this was a HTTP request, the offset
 +     * should already be where want it to, but this allows e.g. local testing
 +     * without a HTTP server. */
@@ -1595,7 +1591,7 @@ diff -uNr ffmpeg-3.3/libavformat/dashdec.c ffmpeg-3.3_dash_demux/libavformat/das
 +                sleep(1);
 +            }
 +            else {
-+            v->cur_seq_no += 1;
++                v->cur_seq_no += 1;
 +            }
 +            goto restart;
 +        }
@@ -1627,9 +1623,9 @@ diff -uNr ffmpeg-3.3/libavformat/dashdec.c ffmpeg-3.3_dash_demux/libavformat/das
 +     * Maybe we should restart context every few segments?
 +     */
 +    if (!v->is_restart_needed)
-+    v->cur_seq_no += 1;
++        v->cur_seq_no += 1;
 +    v->is_restart_needed = 1;
-+
++    
 +    // ff_format_io_close(v->parent, &v->input);
 +    // v->cur_seq_no += 1;
 +    // goto restart;
@@ -1889,15 +1885,15 @@ diff -uNr ffmpeg-3.3/libavformat/dashdec.c ffmpeg-3.3_dash_demux/libavformat/das
 +
 +    if (cur->ctx) {
 +        while (!ff_check_interrupt(c->interrupt_callback) && ret == 0) {
-+        ret = av_read_frame(cur->ctx, &cur->pkt);
++            ret = av_read_frame(cur->ctx, &cur->pkt);
 +            
-+        if (0 == ret) {
-+            /* If we got a packet, return it */
-+            *pkt = cur->pkt;
-+            cur->cur_timestamp = av_rescale(pkt->pts, (int64_t)cur->ctx->streams[0]->time_base.num * 90000, cur->ctx->streams[0]->time_base.den);
-+            pkt->stream_index = cur->stream_index;
-+            reset_packet(&cur->pkt);
-+            return 0;
++            if (0 == ret) {
++                /* If we got a packet, return it */
++                *pkt = cur->pkt;
++                cur->cur_timestamp = av_rescale(pkt->pts, (int64_t)cur->ctx->streams[0]->time_base.num * 90000, cur->ctx->streams[0]->time_base.den);
++                pkt->stream_index = cur->stream_index;
++                reset_packet(&cur->pkt);
++                return 0;
 +            } 
 +            
 +            reset_packet(&cur->pkt);
