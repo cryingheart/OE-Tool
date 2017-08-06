@@ -1,7 +1,7 @@
 diff -uNr ffmpeg-3.3/configure ffmpeg-3.3_dash_demux/configure
 --- ffmpeg-3.3/configure	Tue Apr 18 15:25:53 2017
 +++ ffmpeg-3.3_dash_demux/configure	Tue Apr 18 15:25:53 2017
-@@ -290,8 +290,9 @@
+@@ -290,6 +290,7 @@
                             on OSX if openssl and gnutls are not used [autodetect]
 															 
    --disable-xlib           disable xlib [autodetect]
