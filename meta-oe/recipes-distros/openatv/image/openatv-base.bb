@@ -21,6 +21,7 @@ RDEPENDS_${PN} = "\
     openssh-sftp-server \
     ${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "", "iproute2 ", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "", "ntfs-3g ", d)} \
+    exteplayer 3 \
     hddtemp \
     busybox-cron \
     python-imaging \
