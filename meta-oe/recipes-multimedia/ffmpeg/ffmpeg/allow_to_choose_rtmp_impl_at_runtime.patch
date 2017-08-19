@@ -1,6 +1,5 @@
-diff -uNr ffmpeg-3.2.2/configure ffmpeg-3.2.2_both_rtmp/configure
---- ffmpeg-3.2.2/configure    2016-10-01 03:12:41.000000000 +0200
-+++ ffmpeg-3.2.2_both_rtmp/configure    2016-10-13 10:55:16.843636047 +0200
+--- a/configure    2016-10-01 03:12:41.000000000 +0200
++++ b/configure    2016-10-13 10:55:16.843636047 +0200
 @@ -2934,10 +2934,8 @@
  # protocols
  async_protocol_deps="threads"
@@ -75,9 +74,8 @@ diff -uNr ffmpeg-3.2.2/configure ffmpeg-3.2.2_both_rtmp/configure
  extern const URLProtocol ff_rtp_protocol;
  extern const URLProtocol ff_sctp_protocol;
  extern const URLProtocol ff_srtp_protocol;
-diff -Naur ffmpeg-3.2.2/libavformat/rtmpproto.c ffmpeg-3.2.2_both_rtmp/libavformat/rtmpproto.c
---- ffmpeg-3.2.2/libavformat/rtmpproto.c    2016-10-01 03:12:42.000000000 +0200
-+++ ffmpeg-3.2.2_both_rtmp/libavformat/rtmpproto.c    2016-10-13 10:55:16.862635525 +0200
+--- a/libavformat/rtmpproto.c    2016-10-01 03:12:42.000000000 +0200
++++ b/libavformat/rtmpproto.c    2016-10-13 10:55:16.862635525 +0200
 @@ -2578,7 +2578,7 @@
  static int rtmp_open(URLContext *s, const char *uri, int flags)
  {
