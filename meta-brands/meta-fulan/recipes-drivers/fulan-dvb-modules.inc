@@ -26,6 +26,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/fulan-dvb-modules:"
 SRC_URI = " \
     git://github.com/kueken/driver.git;protocol=git \
     file://${MACHINE}/pti.ko \
+    file://aotom_spark_procfs.patch;patch=1 \
     file://ddbootup \
     file://sh4booster \
     file://modules.conf \
