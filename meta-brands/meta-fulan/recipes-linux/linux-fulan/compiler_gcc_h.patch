@@ -1,5 +1,5 @@
---- a/kernel-source/include/linux/compiler-gcc.h	Mon Sep 11 11:35:18 2017
-+++ b/kernel-source/include/linux/compiler-gcc.h	Mon Sep 18 21:03:23 2017
+--- a/include/linux/compiler-gcc.h	Mon Sep 11 11:35:18 2017
++++ b/include/linux/compiler-gcc.h	Mon Sep 18 21:03:23 2017
 @@ -1,86 +1,330 @@
 -#ifndef __LINUX_COMPILER_H
 -#error "Please don't include <linux/compiler-gcc.h> directly, include <linux/compiler.h> instead."
