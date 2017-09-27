@@ -8,7 +8,7 @@ PACKAGECONFIG[librtmp] = "--enable-librtmp,--disable-librtmp,rtmpdump"
 PACKAGECONFIG[libbluray] = "--enable-libbluray --enable-protocol=bluray,--disable-libbluray,libbluray"
 PACKAGECONFIG[libfreetype] = "--enable-libfreetype,--disable-libfreetype,freetype"
 
-PR = "r10"
+PR = "r1"
 
 PACKAGECONFIG = "avdevice avfilter avcodec avformat avresample swscale swresample \
 		bzlib gpl x264 openssl libbluray libfreetype librtmp"
@@ -18,7 +18,6 @@ MIPSFPU = "${@bb.utils.contains('TARGET_FPU', 'soft', '--disable-mipsfpu', '--en
 
 SRC_URI_append = " \
     file://ffmpeg-fix-hls.patch \
-    file://ffmpeg-aac.patch \
     file://ffmpeg-buffer-size.patch \
     file://ffmpeg-fix-mpegts.patch \
     file://ffmpeg-fix-edit-list-parsing.patch \
@@ -32,9 +31,6 @@ EXTRA_FFCONF = " \
     --disable-ffserver \
     --disable-ffplay \
     --enable-ffprobe \
-    --disable-iconv \
-    --disable-postproc \
-    --disable-doc \
     --disable-altivec \
     --disable-amd3dnow \
     --disable-amd3dnowext \

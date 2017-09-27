@@ -10,13 +10,13 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/COPYING;md5=751419260aa954499f7abaabaa882b
 RDEPENDS_${PN} = "stinit"
 
 KV = "2.6.32.71-stm24-0217"
-SRCREV = "79e3d756e48915148bf32bc82ed77c9442824df4"
+SRCREV = "3a6f1d9edf6a0e8a73d0f293f71823af62033ceb"
 
 inherit module
 
 PACKAGES = "${PN} ${PN}-dev"
 
-INC_PR = "r46"
+INC_PR = "r47"
 PV = "${KV}+${SRCDATE}"
 
 PTI_NP_PATH ?= "/data/pti_np"
@@ -25,7 +25,6 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/fulan-dvb-modules:"
 
 SRC_URI = " \
     git://github.com/Duckbox-Developers/driver.git;protocol=git \
-    file://${MACHINE}/pti.ko \
     file://aotom_spark_procfs.patch;patch=1 \
     file://ddbootup \
     file://sh4booster \
@@ -141,7 +140,13 @@ do_install() {
 	install -m 0755 ${WORKDIR}/sh4booster ${D}${sysconfdir}/init.d
 	ln -sf ../init.d/sh4booster ${D}${sysconfdir}/rcS.d/S05sh4booster
 
-    install -m 644 ${WORKDIR}/${MACHINE}/pti.ko ${D}/lib/modules/${KERNEL_VERSION}/extra/pti/pti.ko 
+    # if no pti_np sources are available and a custom pti.ko is present, overwrite the tdt one
+    if [ ! -e ${PTI_NP_PATH}/Makefile ]; then
+        if [ -e ${PTI_NP_PATH}/pti.ko ]; then
+            echo "Found custom pti binary.." 
+            install -m 644 ${PTI_NP_PATH}/pti.ko ${D}/lib/modules/${KERNEL_VERSION}/extra/pti/pti.ko
+        fi
+    fi
 
     find ${D} -name stmcore-display-sti7106.ko | xargs -r rm # we don't have a 7106 chip
 }

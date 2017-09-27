@@ -1,4 +1,4 @@
-HOMEPAGE = "https://github/Audioniek/apps"
+HOMEPAGE = "https://github.com/kueken/apps"
 SECTION = "base"
 require conf/license/license-gplv2.inc
 DEPENDS = "fulan-dvb-modules-${MACHINE}"
@@ -10,7 +10,7 @@ PV = "1.0+git${SRCPV}"
 PKGV = "1.0+git${GITPKGV}"
 
 SRC_URI = " \
-    git://github.com/Audioniek/apps.git;protocol=git \
+    git://github.com/kueken/apps.git;protocol=git \
     file://libtool_dont_stop.patch \
 "
 
