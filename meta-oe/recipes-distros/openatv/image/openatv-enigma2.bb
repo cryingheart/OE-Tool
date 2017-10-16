@@ -28,12 +28,13 @@ RRECOMMENDS_${PN} = " \
     enigma2-plugin-extensions-tvspielfilm \
     enigma2-plugin-extensions-bmediacenter \
     enigma2-plugin-extensions-piconmanager \
+    enigma2-plugin-extensions-subssupport \
     enigma2-plugin-systemplugins-videotune \
     ${@bb.utils.contains("MACHINE_FEATURES", "videoenhancement", "", "enigma2-plugin-systemplugins-videoenhancement", d)} \
     enigma2-plugin-systemplugins-softwaremanager \
     enigma2-plugin-systemplugins-vps \
     enigma2-plugin-systemplugins-hotplug \
-    enigma2-plugin-extensions-mediaplayer \
+    enigma2-plugin-extensions-mediaplayer2 \
     ${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "", "enigma2-plugin-extensions-openwebif-themes enigma2-plugin-extensions-openwebif-terminal", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "enigma2-plugin-extensions-openwebif-webtv", "enigma2-plugin-extensions-openwebif-vxg", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "dreamboxv1", "enigma2-plugin-extensions-dflash mtd-utils-jffs2", "", d)} \
