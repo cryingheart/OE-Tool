@@ -24,7 +24,7 @@ PTI_NP_PATH ?= "/data/pti_np"
 FILESEXTRAPATHS_prepend := "${THISDIR}/fulan-dvb-modules:"
 
 SRC_URI = " \
-    git://github.com/Duckbox-Developers/driver.git;protocol=git \
+    git://github.com/Duckbox-Developers/driver-old.git;protocol=git \
     file://aotom_spark_procfs.patch;patch=1 \
     file://ddbootup \
     file://sh4booster \
@@ -126,7 +126,7 @@ do_install() {
     install -m 644 include/player2/PNGDecode_interface.h ${D}/${includedir}
     install -m 644 include/player2/RLEDecode_interface.h ${D}/${includedir}
     install -m 644 frontcontroller/aotom_spark/aotom_main.h ${D}/${includedir}
-
+ 
 
     #install modutils config
     install -d ${D}/${sysconfdir}/modules-load.d
