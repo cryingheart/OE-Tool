@@ -65,15 +65,7 @@ do_configure_prepend () {
     if [ -L multicom ]; then
         rm multicom 
     fi
-    ln -s ${S}/include/stmfb ${S}/include/stmfb
-    ln -s ${S}/include/player2 ${S}/include/player2
-    ln -s ${S}/multicom/include ${S}/include/multicom
-    ln -s ${S}/player2 ${S}/player2
-    ln -s ${S}/multicom ${S}/multicom
-    ln -s ${S}/stgfb/stmfb ${S}/stgfb/stmfb
-    rm -f .config 
-    printf "export CONFIG_PLAYER_191=y\nexport CONFIG_MULTICOM324=y\n" > .config
-    export KERNEL_LOCATION="${STAGING_KERNEL_DIR}"
+
 }
 
 do_compile() {
@@ -119,7 +111,7 @@ do_install() {
 
     # install header files
     install -d ${D}/${includedir}/
-    install -m 644 multicom/include/mme.h ${D}/${includedir}
+    install -m 644 include/multicom/mme.h ${D}/${includedir}
     install -m 644 include/player2/JPEG_VideoTransformerTypes.h ${D}/${includedir}
     install -m 644 include/player2/JPEGDECHW_VideoTransformerTypes.h ${D}/${includedir}
     install -m 644 include/player2/PNGDecode_interface.h ${D}/${includedir}
