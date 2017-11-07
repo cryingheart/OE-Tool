@@ -10,13 +10,13 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/COPYING;md5=751419260aa954499f7abaabaa882b
 RDEPENDS_${PN} = "stinit"
 
 KV = "2.6.32.71-stm24-0217"
-SRCREV = "3a6f1d9edf6a0e8a73d0f293f71823af62033ceb"
+SRCREV = "e94027065dc756ea41f537d1d3d215a96d549b94"
 
 inherit module
 
 PACKAGES = "${PN} ${PN}-dev"
 
-INC_PR = "r47"
+INC_PR = "r48"
 PV = "${KV}+${SRCDATE}"
 
 PTI_NP_PATH ?= "/data/pti_np"
@@ -66,15 +66,6 @@ do_configure_prepend () {
     if [ -L multicom ]; then
         rm multicom 
     fi
-    ln -s ${S}/include/stmfb-3.1_stm24_0104 ${S}/include/stmfb
-    ln -s ${S}/include/player2_191 ${S}/include/player2
-    ln -s ${S}/multicom-3.2.4/include ${S}/include/multicom
-    ln -s ${S}/player2_191 ${S}/player2
-    ln -s ${S}/multicom-3.2.4 ${S}/multicom
-    ln -s ${S}/stgfb/stmfb-3.1_stm24_0104 ${S}/stgfb/stmfb
-    rm -f .config 
-    printf "export CONFIG_PLAYER_191=y\nexport CONFIG_MULTICOM324=y\n" > .config
-    export KERNEL_LOCATION="${STAGING_KERNEL_DIR}"
 }
 
 do_compile() {
@@ -120,7 +111,7 @@ do_install() {
 
     # install header files
     install -d ${D}/${includedir}/
-    install -m 644 multicom/include/mme.h ${D}/${includedir}
+    install -m 644 include/multicom/mme.h ${D}/${includedir}
     install -m 644 include/player2/JPEG_VideoTransformerTypes.h ${D}/${includedir}
     install -m 644 include/player2/JPEGDECHW_VideoTransformerTypes.h ${D}/${includedir}
     install -m 644 include/player2/PNGDecode_interface.h ${D}/${includedir}
