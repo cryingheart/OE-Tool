@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/COPYING;md5=751419260aa954499f7abaabaa882b
 RDEPENDS_${PN} = "stinit"
 
 KV = "2.6.32.71-stm24-0217"
-SRCREV = "3a6f1d9edf6a0e8a73d0f293f71823af62033ceb"
+SRCREV = "19a8028820182380a86e421df90b7a80c4e055a6"
 
 inherit module
 
@@ -24,8 +24,7 @@ PTI_NP_PATH ?= "/data/pti_np"
 FILESEXTRAPATHS_prepend := "${THISDIR}/fulan-dvb-modules:"
 
 SRC_URI = " \
-    git://github.com/Duckbox-Developers/driver-old.git;protocol=git \
-    file://aotom_spark_procfs.patch;patch=1 \
+    git://github.com/kueken/driver.git;protocol=git \
     file://ddbootup \
     file://sh4booster \
     file://modules.conf \
