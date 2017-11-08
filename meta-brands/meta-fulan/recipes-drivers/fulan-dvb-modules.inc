@@ -16,7 +16,7 @@ inherit module
 
 PACKAGES = "${PN} ${PN}-dev"
 
-INC_PR = "r48"
+INC_PR = "r0"
 PV = "${KV}+${SRCDATE}"
 
 PTI_NP_PATH ?= "/data/pti_np"
@@ -66,6 +66,15 @@ do_configure_prepend () {
     if [ -L multicom ]; then
         rm multicom 
     fi
+    ln -s ${S}/include/stmfb-3.1 ${S}/include/stmfb
+    ln -s ${S}/include/player2 ${S}/include/player2
+    ln -s ${S}/include/multicom ${S}/include/multicom
+    ln -s ${S}/player2_191 ${S}/player2
+    ln -s ${S}/multicom ${S}/multicom
+    ln -s ${S}/stgfb/stmfb ${S}/stgfb/stmfb
+    rm -f .config 
+    printf "export CONFIG_PLAYER_191=y\nexport CONFIG_MULTICOM=y\n" > .config
+export KERNEL_LOCATION="${STAGING_KERNEL_DIR}"
 
 }
 
