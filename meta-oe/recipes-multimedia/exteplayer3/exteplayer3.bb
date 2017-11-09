@@ -14,11 +14,12 @@ PKGV = "35+gitr${GITPKGV}"
 
 PR = "r0"
 
-SRCREV = "a728af5500ae0c0697d7d3601f306656b7b46f2a"
-SRC_URI = "git://github.com/samsamsam-iptvplayer/exteplayer3.git;branch=master"
+SRCREV = "74c7263cd7ed3a8074cafecb801d81d50379f5cd"
+SRC_URI = " \
+    git://github.com/samsamsam-iptvplayer/exteplayer3.git;branch=master \
+"
 
 S = "${WORKDIR}/git/"
-
 
 SOURCE_FILES = "main/exteplayer.c"
 SOURCE_FILES =+ "container/container.c"
