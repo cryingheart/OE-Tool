@@ -6,20 +6,24 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 DEPENDS = "enigma2 uchardet openssl"
-RDEPENDS_${PN} = "enigma2 uchardet openssl python-json"
-RRECOMMENDS_${PN} = "exteplayer3"
+RDEPENDS_${PN} = "enigma2 uchardet exteplayer3 openssl python-json"
 
 SRCREV = "${AUTOREV}"
-SRC_URI = "git://github.com/mx3L/serviceapp.git;branch=develop"
+SRC_URI = \
+	"git://github.com/mx3L/serviceapp.git;branch=master \
+	file://0001-serviceapp-add-setQpipMode-function-recently-added-f.patch \
+	"
 
 S = "${WORKDIR}/git"
 
-inherit autotools gitpkgv pythonnative pkgconfig
+inherit autotools gitpkgv pythonnative pkgconfig gettext
 
-CXXFLAGS_append = " -std=c++11"
+CXXFLAGS_append = " -std=gnu++11"
 
 PV = "1+git${SRCPV}"
 PKGV = "1+git${GITPKGV}"
+
+PR = "r4"
 
 EXTRA_OECONF = "\
 	BUILD_SYS=${BUILD_SYS} \
@@ -28,22 +32,12 @@ EXTRA_OECONF = "\
 	STAGING_LIBDIR=${STAGING_LIBDIR} \
 	"
 
-do_install_append() {
-	rm ${D}${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceApp/*.pyc
-}
 
-FILES_${PN}-src = "\
-    ${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceApp/*.py \
-    ${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceApp/locale/*/LC_MESSAGES/*.mo \
-    /usr/src/debug/* \
-    "
+FILES_${PN} = "\
+	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceApp/*.pyo \
+	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceApp/locale/*/LC_MESSAGES/ServiceApp.mo \
+	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceApp/serviceapp.so"
 
-FILES_${PN}-dbg = "\
-    ${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceApp/serviceapp.la \
-    /usr/src/debug/enigma2-plugin-systemplugins-serviceapp/*/*/*/*/*.cpp \
-    /usr/src/debug/enigma2-plugin-systemplugins-serviceapp/*/*/*/*/*.h \
-    /usr/src/debug/enigma2-plugin-systemplugins-serviceapp/*/*/*/*/*.c \
-    /usr/src/debug/enigma2-plugin-systemplugins-serviceapp/*/*/*/*/*/*.cpp \
-    /usr/src/debug/enigma2-plugin-systemplugins-serviceapp/*/*/*/*/*/*.h \
-    /usr/src/debug/enigma2-plugin-systemplugins-serviceapp/*/*/*/*/*/*.c \
-"
+FILES_${PN}-dev = "\
+	${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceApp/*.py \
+${libdir}/enigma2/python/Plugins/SystemPlugins/ServiceApp/serviceapp.la"
