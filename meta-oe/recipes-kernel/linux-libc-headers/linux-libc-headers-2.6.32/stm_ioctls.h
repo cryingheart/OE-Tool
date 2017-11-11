@@ -385,3 +385,4 @@ typedef dvb_option_t video_option_t;
 #define AUDIO_GET_CLOCK_DATA_POINT _IOR('o', 81, audio_clock_data_point_t)
 
 #endif /* H_DVB_STM_H */
+
