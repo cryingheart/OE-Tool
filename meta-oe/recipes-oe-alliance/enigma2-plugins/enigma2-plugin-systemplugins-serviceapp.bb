@@ -17,7 +17,7 @@ S = "${WORKDIR}/git"
 
 inherit autotools gitpkgv pythonnative pkgconfig gettext
 
-CXXFLAGS_append = " -std=gnu++98"
+CXXFLAGS_append = " -std=c++11"
 
 PV = "0.5+git${SRCPV}"
 PKGV = "0.5+git${GITPKGV}"
