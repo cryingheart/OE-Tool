@@ -90,13 +90,13 @@ do_install() {
 
     # install header files
     install -d ${D}/${includedir}/
-    install -m 644 include/multicom/mme.h ${D}/${includedir}
+    install -m 644 multicom/include/mme.h ${D}/${includedir}
     install -m 644 include/player2/JPEG_VideoTransformerTypes.h ${D}/${includedir}
     install -m 644 include/player2/JPEGDECHW_VideoTransformerTypes.h ${D}/${includedir}
     install -m 644 include/player2/PNGDecode_interface.h ${D}/${includedir}
     install -m 644 include/player2/RLEDecode_interface.h ${D}/${includedir}
     install -m 644 frontcontroller/aotom_spark/aotom_main.h ${D}/${includedir}
- 
+    install -m 644 player2/components/include/stddefs.h ${D}/${includedir}
 
     #install modutils config
     install -d ${D}/${sysconfdir}/modules-load.d
