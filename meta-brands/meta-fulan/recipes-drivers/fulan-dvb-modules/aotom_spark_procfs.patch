@@ -348,7 +348,7 @@ index 0000000..931caab
 +/proc/stb/fp/aotom_icon", "w"
 +*/
 +/*
-+ *  /proc/------
++ *  /proc/
 + *             |
 + *             +--- vfd (w)
 + "             +--- progress (rw)

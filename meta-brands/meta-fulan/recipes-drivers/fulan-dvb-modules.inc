@@ -16,7 +16,7 @@ inherit module
 
 PACKAGES = "${PN} ${PN}-dev"
 
-INC_PR = "r0"
+INC_PR = "r1"
 PV = "${KV}+${SRCDATE}"
 
 PTI_NP_PATH ?= "/data/pti_np"
@@ -31,6 +31,7 @@ SRC_URI = " \
     file://modules.conf \
     file://modules-conf.conf \
     file://COPYING \
+    file://Compcache.patch \
 " 
 
 FILES_${PN} = "${sysconfdir}/init.d ${sysconfdir}/rcS.d ${sysconfdir}/modules-load.d ${sysconfdir}/modprobe.d"
@@ -40,42 +41,14 @@ S = "${WORKDIR}/git"
 
 EXTRA_OEMAKE = "-e MAKEFLAGS="
 
-do_configure_prepend () {
+CLEANBROKEN = "1"
 
+do_configure_prepend () {
     # if a custom pti source is present, add it to the sources
     if [ -e ${PTI_NP_PATH}/Makefile ]; then
         echo "Found custom pti sources.."
         cp -r ${PTI_NP_PATH} ${S}
     fi
-
-    if [ -L include/stmfb ]; then
-        rm include/stmfb
-    fi
-    if [ -L include/player2 ]; then
-        rm include/player2
-    fi
-    if [ -L include/multicom ]; then
-        rm include/multicom
-    fi
-    if [ -L player2 ]; then
-        rm player2
-    fi
-    if [ -L stgfb/stmfb ]; then
-        rm stgfb/stmfb
-    fi
-    if [ -L multicom ]; then
-        rm multicom 
-    fi
-    ln -s ${S}/include/stmfb ${S}/include/stmfb
-    ln -s ${S}/include/player2 ${S}/include/player2
-    ln -s ${S}/include/multicom ${S}/include/multicom
-    ln -s ${S}/player2 ${S}/player2
-    ln -s ${S}/multicom ${S}/multicom
-    ln -s ${S}/stgfb/stmfb ${S}/stgfb/stmfb
-    rm -f .config 
-    printf "export CONFIG_PLAYER_191=y\nexport CONFIG_MULTICOM=y\n" > .config
-export KERNEL_LOCATION="${STAGING_KERNEL_DIR}"
-
 }
 
 do_compile() {
@@ -88,13 +61,11 @@ do_compile() {
         ${@d.getVar('MACHINE',1).upper()}=1 \
         M=${S} V=1 \
         ARCH=sh \
-        PLAYER191=player191 \
         DRIVER_TOPDIR="${S}" \
         KERNEL_LOCATION="${STAGING_KERNEL_DIR}" \
         CONFIG_KERNEL_BUILD="${STAGING_KERNEL_BUILDDIR}" \
         CONFIG_KERNEL_PATH="${STAGING_KERNEL_DIR}" \
         CONFIG_MODULES_PATH="${D}" \
-        CONFIG_PLAYER_191=y \
         CCFLAGSY="-I${STAGING_DIR_HOST}/usr/include" \
         modules 
 }
@@ -109,13 +80,11 @@ do_install() {
         ${@d.getVar('MACHINE',1).upper()}=1 \
         M=${S} V=1 \
         ARCH=sh \
-        PLAYER191=player191 \
         DRIVER_TOPDIR="${S}" \
         KERNEL_LOCATION="${STAGING_KERNEL_DIR}" \
         CONFIG_KERNEL_BUILD="${STAGING_KERNEL_BUILDDIR}" \
         CONFIG_KERNEL_PATH="${STAGING_KERNEL_DIR}" \
         CONFIG_MODULES_PATH="${D}" \
-        CONFIG_PLAYER_191=y \
         CCFLAGSY="-I${STAGING_DIR_HOST}/usr/include" \
         INSTALL_MOD_PATH=${D} modules_install
 
