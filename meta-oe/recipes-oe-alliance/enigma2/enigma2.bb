@@ -8,7 +8,6 @@ DEPENDS = " \
     gettext-native \
     ${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "libeplayer3", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "", "gstreamer1.0-plugins-base gstreamer1.0", d)} \
-    libmme-host \
     jpeg \
     libdreamdvd libdvbsi++ libfribidi libmad libpng giflib libxml2 libxmlccwrap \
     ${@bb.utils.contains('DISTRO_FEATURES', 'libsigc2', 'libsigc++-2.0', 'libsigc++-1.2', d)} \
@@ -29,7 +28,6 @@ RDEPENDS_${PN} = " \
     ${PYTHON_RDEPS} \
     ${@bb.utils.contains("MACHINE_FEATURES", "uianimation", "vuplus-libgles-${MACHINE} libvugles2" , "", d)} \
     oe-alliance-branding \
-    libmme-host \
     "
 
 RRECOMMENDS_${PN} = " \
