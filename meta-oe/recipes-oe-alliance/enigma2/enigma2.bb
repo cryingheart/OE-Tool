@@ -6,6 +6,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=751419260aa954499f7abaabaa882bbe"
 DEPENDS = " \
     freetype \
     gettext-native \
+    libmmeimage \
+    libmme-host \
     ${@bb.utils.contains("MACHINE_FEATURES", "libeplayer", "libeplayer3", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "nogstreamer", "", "gstreamer1.0-plugins-base gstreamer1.0", d)} \
     jpeg \
@@ -22,6 +24,7 @@ RDEPENDS_${PN} = " \
     alsa-conf \
     enigma2-fonts \
     ethtool \
+    libmme-host \
     glibc-gconv-iso8859-15 \
     glibc-gconv-cp1250 \
     hotplug-e2-helper \

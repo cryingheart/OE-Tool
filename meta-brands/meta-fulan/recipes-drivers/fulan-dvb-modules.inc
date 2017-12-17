@@ -16,7 +16,7 @@ inherit module
 
 PACKAGES = "${PN} ${PN}-dev"
 
-INC_PR = "r1"
+INC_PR = "r2"
 PV = "${KV}+${SRCDATE}"
 
 PTI_NP_PATH ?= "/data/pti_np"
@@ -49,6 +49,9 @@ do_configure_prepend () {
         echo "Found custom pti sources.."
         cp -r ${PTI_NP_PATH} ${S}
     fi
+	
+    export KERNEL_LOCATION="${STAGING_KERNEL_DIR}"
+    cp -R ${S}/multicom ${STAGING_KERNEL_DIR}/multicom
 }
 
 do_compile() {
