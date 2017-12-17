@@ -29,7 +29,6 @@ RDEPENDS_${PN} = "\
     exteplayer3 \
     ffmpeg \
     rtmpdump \
-    enigma2-plugin-systemplugins-serviceapp \
     ${@bb.utils.contains("TUNE_FEATURES", "armv", "glibc-compat", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "dreamboxv1", "", "ofgwrite", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "", " \

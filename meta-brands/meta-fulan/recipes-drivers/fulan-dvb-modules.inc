@@ -124,5 +124,12 @@ do_install() {
     find ${D} -name stmcore-display-sti7106.ko | xargs -r rm # we don't have a 7106 chip
 }
 
+PACKAGESPLITFUNCS_append = " handle_driver_rename "
+
+python handle_driver_rename () {
+    d.setVar("RPROVIDES_fulan-dvb-modules-${MACHINE}", "fulan-dvb-modules")
+    d.setVar("RREPLACES_fulan-dvb-modules-${MACHINE}", "fulan-dvb-modules")
+    d.setVar("RCONFLICTS_fulan-dvb-modules-${MACHINE}", "fulan-dvb-modules")
+}
 FILES_${PN}-dev += "${includedir}"
 

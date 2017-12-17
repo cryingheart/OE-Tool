@@ -221,6 +221,7 @@ EXTRA_IMAGEDEPENDS += "\
 
 MACHINE_EXTRA_RDEPENDS = "\
     enigma2-plugin-systemplugins-vfdcontrol \
+    libpcre \
     aio-grab \
     "
 
