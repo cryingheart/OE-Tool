@@ -1,6 +1,6 @@
 DESCRIPTION = "MME image library"
 
-require ddt-apps.inc
+require ddt-apps2.inc
 
 EXTRA_OECONF_append = " \
 	 --with-multicom=${STAGING_KERNEL_DIR}/multicom \
