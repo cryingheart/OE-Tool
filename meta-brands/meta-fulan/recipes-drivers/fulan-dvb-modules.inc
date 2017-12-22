@@ -49,9 +49,6 @@ do_configure_prepend () {
         echo "Found custom pti sources.."
         cp -r ${PTI_NP_PATH} ${S}
     fi
-	
-    export KERNEL_LOCATION="${STAGING_KERNEL_DIR}"
-    cp -R ${S}/multicom ${STAGING_KERNEL_DIR}/multicom
 }
 
 do_compile() {
