@@ -30,8 +30,3 @@
  	{ .type = NUM_RFKILL_TYPES,      .name = NULL            }
  };
  
-@@ -729,4 +724,3 @@
- 
- 	return ret ? EXIT_FAILURE : EXIT_SUCCESS;
- }
--
