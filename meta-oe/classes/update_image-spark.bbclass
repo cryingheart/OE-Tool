@@ -7,12 +7,19 @@ BOOTDD_VOLUME_ID ?= "${MACHINE}"
 # Use an ext2 by default as rootfs
 UPDATEIMG_ROOTFS_TYPE ?= "ext2.gz"
 UPDATEIMG_ROOTFS = "${IMAGE_NAME}.rootfs.${UPDATEIMG_ROOTFS_TYPE}"
-UPDATEIMG_KERNEL_NAME = "${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGE_BASE_NAME}.bin"
+upDATEIMG_KERNEL_NAME = "${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGE_BASE_NAME}.bin"
 
-do_image_sparkupdt[depends] += "parted-native:do_populate_sysroot mtools-native:do_populate_sysroot dosfstools-native:do_populate_sysroot u-boot-mkimage-native:do_populate_sysroot virtual/kernel:do_populate_sysroot"
+# TODO: Add the final image here
+IMAGE_DEPENDS_spark-updt = " \
+            parted-native \
+            mtools-native \
+            dosfstools-native \
+            u-boot-mkimage-native \            
+            virtual/kernel \
+            "
 
 # USB-pendrive image name
-UPDATEIMG = "${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.sparkupdt"
+UPDATEIMG = "${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.spark-updt"
 
 
 # Additional files and/or directories to be copied into the vfat partition from the IMAGE_ROOTFS.
@@ -20,7 +27,7 @@ FATPAYLOAD ?= ""
 
 IMAGEDATESTAMP = "${@time.strftime('%Y.%m.%d',time.gmtime())}"
 
-IMAGE_CMD_sparkupdt  () {
+IMAGE_CMD_spark-updt  () {
     # Initialize sdcard image file
     dd if=/dev/zero of=${UPDATEIMG} bs=1 count=0 seek=$(expr 1000 \* 1000 \* ${UPDATEIMG_SIZE})
 

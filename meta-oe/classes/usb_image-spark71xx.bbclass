@@ -23,6 +23,9 @@ inherit image_types
 # 0                      4096     4KiB + 20MiB       4KiB + 20Mib + SDIMG_ROOTFS   4KiB + 20MiB + SDIMG_ROOTFS + 4KiB
 
 
+# Set kernel and boot loader
+IMAGE_BOOTLOADER ?= "u-boot-mkimage"
+
 # Boot partition volume id
 BOOTDD_VOLUME_ID ?= "${MACHINE}"
 
@@ -36,18 +39,23 @@ IMAGE_ROOTFS_ALIGNMENT = "4096"
 SDIMG_ROOTFS_TYPE ?= "ext2"
 SDIMG_ROOTFS = "${IMAGE_NAME}.rootfs.${SDIMG_ROOTFS_TYPE}"
 
-
-do_image_spark71xxusbimg[depends] += "parted-native:do_populate_sysroot mtools-native:do_populate_sysroot u-boot-mkimage-native:do_populate_sysroot dosfstools-native:do_populate_sysroot virtual/kernel:do_populate_sysroot"
+IMAGE_DEPENDS_spark71xx-usbimg = " \
+			parted-native \
+			mtools-native \
+			dosfstools-native \
+			virtual/kernel \
+			${IMAGE_BOOTLOADER} \
+			"
 
 # SD card image name
-SDIMG = "${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.spark71xxusbimg"
+SDIMG = "${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.spark71xx-usbimg"
 
 # Additional files and/or directories to be copied into the vfat partition from the IMAGE_ROOTFS.
 FATPAYLOAD ?= ""
 
 IMAGEDATESTAMP = "${@time.strftime('%Y.%m.%d',time.gmtime())}"
 
-IMAGE_CMD_spark71xxusbimg () {
+IMAGE_CMD_spark71xx-usbimg () {
 
 	# Align partitions
 	BOOT_SPACE_ALIGNED=$(expr ${BOOT_SPACE} + ${IMAGE_ROOTFS_ALIGNMENT} - 1)
@@ -68,7 +76,6 @@ IMAGE_CMD_spark71xxusbimg () {
 
 	# Create a vfat image with boot files
 	BOOT_BLOCKS=$(LC_ALL=C parted -s ${SDIMG} unit b print | awk '/ 1 / { print substr($4, 1, length($4 -1)) / 512 /2 }')
-	rm -f ${WORKDIR}/boot.img
 	mkfs.vfat -n "${BOOTDD_VOLUME_ID}" -S 512 -C ${WORKDIR}/boot.img $BOOT_BLOCKS
 	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${MACHINE}.bin ::uImage
 
@@ -101,4 +108,5 @@ IMAGE_CMD_spark71xxusbimg () {
 		dd if=${SDIMG_ROOTFS} of=${SDIMG} conv=notrunc seek=1 bs=$(expr 1024 \* ${BOOT_SPACE_ALIGNED} + ${IMAGE_ROOTFS_ALIGNMENT} \* 1024) && sync && sync
 	fi
 }
+
 
