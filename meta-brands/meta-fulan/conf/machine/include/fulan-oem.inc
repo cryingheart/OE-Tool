@@ -121,7 +121,7 @@ ${@bb.utils.contains('MACHINEBUILD', 'dynaspark7162', 'mtd6' , '', d)}\
 KERNEL_FILE = "uImage"
 ROOTFS_FILE = "e2jffs2.img"
 
-MACHINE_KERNEL_PR = "r14"
+MACHINE_KERNEL_PR = "r15"
 KERNEL_MODULE_PACKAGE_SUFFIX = ""
 
 TARGET_ARCH = "sh4"
@@ -136,6 +136,11 @@ PREFERRED_PROVIDER_virtual/kernel = "linux-fulan"
 PREFERRED_VERSION_linux-libc-headers = "2.6.32"
 PREFERRED_VERSION_directfb = "1.7.7"
 PREFERRED_VERSION_rt8812au = "4.3.14"
+PREFERRED_VERSION_samba = "3.%"
+
+PREFERRED_PROVIDER_virtual/egl = "libstgles"
+PREFERRED_PROVIDER_virtual/libgles1 = "libstgles"
+
 SERIAL_CONSOLE = "115200 ttyAS0"
 
 DVBPROVIDER = "kernel"
@@ -157,7 +162,7 @@ IMAGE_FSTYPES ?= "jffs2"
 
 # enable this for debug
 IMAGE_FSTYPES += "tar.gz "
-#IMAGE_FSTYPES += "spark71xxusbimg "
+#IMAGE_FSTYPES += "spark71xx-usbimg "
 #INHERIT += "usb_image-spark71xx"
 
 IMAGE_CLASSES += "usb_image-spark71xx"
@@ -201,10 +206,16 @@ MACHINE_EXTRA_RRECOMMENDS = " \
 
 EXTRA_IMAGEDEPENDS += "\
     enigma2-plugin-systemplugins-vfdcontrol \
+    libpcre \
+    libstgles \
+    directfb-stgfx2 \
+    aio-grab \
     "
 
 MACHINE_EXTRA_RDEPENDS = "\
     enigma2-plugin-systemplugins-vfdcontrol \
+    libpcre \
+    aio-grab \
     "
 
 include conf/machine/include/autoload-filesystems.inc

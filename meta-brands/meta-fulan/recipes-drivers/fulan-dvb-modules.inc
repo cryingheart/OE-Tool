@@ -90,13 +90,13 @@ do_install() {
 
     # install header files
     install -d ${D}/${includedir}/
-    install -m 644 include/multicom/mme.h ${D}/${includedir}
+    install -m 644 multicom/include/mme.h ${D}/${includedir}
     install -m 644 include/player2/JPEG_VideoTransformerTypes.h ${D}/${includedir}
     install -m 644 include/player2/JPEGDECHW_VideoTransformerTypes.h ${D}/${includedir}
     install -m 644 include/player2/PNGDecode_interface.h ${D}/${includedir}
     install -m 644 include/player2/RLEDecode_interface.h ${D}/${includedir}
     install -m 644 frontcontroller/aotom_spark/aotom_main.h ${D}/${includedir}
-
+    install -m 644 player2/components/include/stddefs.h ${D}/${includedir}
 
     #install modutils config
     install -d ${D}/${sysconfdir}/modules-load.d
@@ -121,5 +121,12 @@ do_install() {
     find ${D} -name stmcore-display-sti7106.ko | xargs -r rm # we don't have a 7106 chip
 }
 
+PACKAGESPLITFUNCS_append = " handle_driver_rename "
+
+python handle_driver_rename () {
+    d.setVar("RPROVIDES_fulan-dvb-modules-${MACHINE}", "fulan-dvb-modules")
+    d.setVar("RREPLACES_fulan-dvb-modules-${MACHINE}", "fulan-dvb-modules")
+    d.setVar("RCONFLICTS_fulan-dvb-modules-${MACHINE}", "fulan-dvb-modules")
+}
 FILES_${PN}-dev += "${includedir}"
 

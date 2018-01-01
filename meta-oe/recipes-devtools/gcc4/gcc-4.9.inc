@@ -3,7 +3,7 @@ require gcc-common.inc
 # Third digit in PV should be incremented after a minor release
 
 PV = "4.9.4"
-PR = "r1"
+PR = "r0"
 
 # BINV should be incremented to a revision after a minor gcc release
 
@@ -63,6 +63,7 @@ SRC_URI = "\
     file://0046-libatomic-deptracking.patch \
     file://0047-repomembug.patch \
     file://0049-Enable-SPE-AltiVec-generation-on-powepc-linux-target.patch \
+    file://0050-Revert-Use-dbx_reg_number-for-spanning-registers.patch \
     file://0051-eabispe.patch \
     file://0052-Add-target-hook-to-override-DWARF2-frame-register-si.patch \
     file://0053-gcc-fix-segfault-from-calling-free-on-non-malloc-d-a.patch \
@@ -75,6 +76,7 @@ SRC_URI = "\
     file://0060-Only-allow-e500-double-in-SPE_SIMD_REGNO_P-registers.patch \
     file://0061-target-gcc-includedir.patch \
     file://0063-Use-SYSTEMLIBS_DIR-replacement-instead-of-hardcoding.patch \
+    file://0064-fix-cross-compiling.patch \
 "
 SRC_URI[md5sum] = "87c24a4090c1577ba817ec6882602491"
 SRC_URI[sha256sum] = "6c11d292cd01b294f9f84c9a59c230d80e9e4a47e5c6355f046bb36d4f358092"
@@ -91,7 +93,6 @@ LTO = "--enable-lto"
 EXTRA_OECONF_BASE = "\
     ${LTO} \
     --enable-libssp \
-    --enable-libitm \
     --disable-bootstrap \
     --with-system-zlib \
     --with-linker-hash-style=${LINKER_HASH_STYLE} \
@@ -103,7 +104,6 @@ EXTRA_OECONF_BASE = "\
 "
 
 EXTRA_OECONF_INITIAL = "\
-    --disable-libitm \
     --disable-libgomp \
     --disable-libssp \
     --disable-libquadmath \
@@ -115,8 +115,8 @@ EXTRA_OECONF_INITIAL = "\
 
 EXTRA_OECONF_append_libc-uclibc = " --disable-decimal-float "
 
-EXTRA_OECONF_PATHS = "\
-    --with-gxx-include-dir=/not/exist{target_includedir}/c++/${BINV} \
-    --with-sysroot=/not/exist \
+EXTRA_OECONF_PATHS = "\ 
+    --with-gxx-include-dir=${STAGING_DIR_TARGET}${target_includedir}/c++/${BINV} \ 
+    --with-sysroot=${STAGING_DIR_TARGET} \ 
     --with-build-sysroot=${STAGING_DIR_TARGET} \
 "
