@@ -1,6 +1,6 @@
 DESCRIPTION = "OpenGL ES v1.0 library and headers"
 
-require ddt-apps2.inc
+require MastaG-apps.inc
 
 PR = "r0"
 
