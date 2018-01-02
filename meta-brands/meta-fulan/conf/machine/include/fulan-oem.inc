@@ -161,8 +161,8 @@ MKUBIFS_ARGS = "--pad ${JFFS2_ENDIANNESS} --eraseblock=${JFFS2_ERASEBLOCK} --no-
 IMAGE_FSTYPES ?= "jffs2"
 
 # enable this for debug
-IMAGE_FSTYPES += "tar.gz "
-#IMAGE_FSTYPES += "spark71xx-usbimg "
+IMAGE_FSTYPES += "tar.gz"
+#IMAGE_FSTYPES += "spark71xx-usbimg"
 #INHERIT += "usb_image-spark71xx"
 
 IMAGE_CLASSES += "usb_image-spark71xx"
@@ -187,6 +187,8 @@ IMAGE_CMD_jffs2_append = "; \
 	
 MACHINE_ESSENTIAL_EXTRA_RDEPENDS += " \
     stlinux24-sh4-stx7111-fdma-firmware \
+    libmme-host \
+    libmme-image \
     stslave-fw \
     ustslave \
     stfbcontrol \
