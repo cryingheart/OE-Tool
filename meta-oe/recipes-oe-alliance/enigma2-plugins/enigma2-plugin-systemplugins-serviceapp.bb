@@ -9,12 +9,9 @@ RCONFLICTS_${PN} = "enigma2-plugin-extensions-serviceapp"
 RREPLACES_${PN} = "enigma2-plugin-extensions-serviceapp"
 
 SRCREV = "${AUTOREV}"
-SRC_URI_apend_sh4 = " \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'libsigc2', 'git://github.com/mx3L/serviceapp.git;branch=develop', 'git://github.com/mx3L/serviceapp.git;branch=master', d)} \
-    "
-SRC_URI_prepend_sh4 = " \
-    git://github.com/mx3L/serviceapp.git;branch=master \
-    file://0001-serviceapp-add-setQpipMode-function-recently-added-f.patch \
+
+SRC_URI= " \
+    ${@bb.utils.contains('BRAND_OEM', 'fulan', 'git://github.com/mx3L/serviceapp.git;branch=develop', 'git://github.com/mx3L/serviceapp.git;branch=master file://0001-serviceapp-add-setQpipMode-function-recently-added-f.patch', d)} \
     "
 
 S = "${WORKDIR}/git"
