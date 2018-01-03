@@ -210,13 +210,11 @@ EXTRA_IMAGEDEPENDS += "\
     libpcre \
     libstgles \
     directfb-stgfx2 \
-    aio-grab \
     "
 
 MACHINE_EXTRA_RDEPENDS = "\
     enigma2-plugin-systemplugins-vfdcontrol \
     libpcre \
-    aio-grab \
     "
 
 include conf/machine/include/autoload-filesystems.inc
