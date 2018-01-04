@@ -11,7 +11,7 @@ PACKAGECONFIG[libfreetype] = "--enable-libfreetype,--disable-libfreetype,freetyp
 PR = "r1"
 
 PACKAGECONFIG = "avdevice avfilter avcodec avformat avresample swscale swresample \
-		bzlib gpl x264 openssl libbluray libfreetype librtmp"
+		bzlib gpl x264 x265 openssl libbluray libfreetype librtmp"
 
 
 MIPSFPU = "${@bb.utils.contains('TARGET_FPU', 'soft', '--disable-mipsfpu', '--enable-mipsfpu', d)}"
@@ -55,6 +55,7 @@ EXTRA_FFCONF = " \
     --disable-muxers \
     --enable-muxer=mpeg1video \
     --enable-muxer=h264 \
+    --enable-muxer=h265 \
     --enable-muxer=mp4 \
     --enable-muxer=image2 \
     --enable-muxer=mjpeg \
@@ -69,6 +70,7 @@ EXTRA_FFCONF = " \
     --enable-encoder=mpeg1video \
     --enable-encoder=png \
     --enable-encoder=libx264 \
+    --enable-encoder=libx265 \
     --enable-encoder=ljpeg \
     --enable-encoder=mpeg4 \
     --enable-encoder=jpeg2000 \
@@ -89,6 +91,7 @@ EXTRA_FFCONF = " \
     --enable-decoder=eac3 \
     --enable-decoder=evrc \
     --enable-decoder=h264 \
+    --enable-decoder=h265 \
     --enable-decoder=iac \
     --enable-decoder=imc \
     --enable-decoder=mace3 \
@@ -254,8 +257,10 @@ EXTRA_FFCONF = " \
     --enable-demuxer=matroska \
     --enable-demuxer=mp4 \
     --enable-demuxer=h264 \
+    --enable-demuxer=h265 \
     --enable-demuxer=mpegvideo \
     --enable-parser=h264 \
+    --enable-parser=h265 \
     --enable-parser=mjpeg \
     --enable-parser=mpeg4video \
     --enable-parser=mpegvideo \
