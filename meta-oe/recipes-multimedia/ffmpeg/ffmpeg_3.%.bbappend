@@ -11,7 +11,7 @@ PACKAGECONFIG[libfreetype] = "--enable-libfreetype,--disable-libfreetype,freetyp
 PR = "r1"
 
 PACKAGECONFIG = "avdevice avfilter avcodec avformat avresample swscale swresample \
-		bzlib gpl x264 x265 openssl libbluray libfreetype librtmp"
+		bzlib gpl x264 openssl libbluray libfreetype librtmp"
 
 
 MIPSFPU = "${@bb.utils.contains('TARGET_FPU', 'soft', '--disable-mipsfpu', '--enable-mipsfpu', d)}"
