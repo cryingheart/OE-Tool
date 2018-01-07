@@ -121,7 +121,7 @@ ${@bb.utils.contains('MACHINEBUILD', 'dynaspark7162', 'mtd6' , '', d)}\
 KERNEL_FILE = "uImage"
 ROOTFS_FILE = "e2jffs2.img"
 
-MACHINE_KERNEL_PR = "r15"
+MACHINE_KERNEL_PR = "r1"
 KERNEL_MODULE_PACKAGE_SUFFIX = ""
 
 TARGET_ARCH = "sh4"
@@ -226,3 +226,5 @@ OEM_ARCH = "${MACHINEBUILD}"
 
 # Add "MACHINEBUILD" override for recipes
 MACHINEOVERRIDES =. "${@['', '${MACHINEBUILD}:']['${MACHINEBUILD}' != '']}"
+
+BBMASK = "meta-vuplus/recipes-graphics/"
