@@ -1,4 +1,4 @@
-HOMEPAGE = "https://github.com/kueken/apps"
+HOMEPAGE = "https://github.com/MastaG/apps"
 SECTION = "base"
 require conf/license/license-gplv2.inc
 DEPENDS = "fulan-dvb-modules-${MACHINE}"

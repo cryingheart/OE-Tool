@@ -16,7 +16,7 @@ inherit module
 
 PACKAGES = "${PN} ${PN}-dev"
 
-INC_PR = "r2"
+INC_PR = "r47"
 PV = "${KV}+${SRCDATE}"
 
 PTI_NP_PATH ?= "/data/pti_np"
@@ -49,6 +49,15 @@ do_configure_prepend () {
         echo "Found custom pti sources.."
         cp -r ${PTI_NP_PATH} ${S}
     fi
+    if [ -L include/multicom ]; then
+        rm include/multicom
+    fi
+    if [ -L multicom ]; then
+        rm multicom 
+    fi
+    ln -sf ${S}/multicom/include ${S}/include/multicom
+    export KERNEL_LOCATION="${STAGING_KERNEL_DIR}"
+    cp -R ${S}/multicom ${STAGING_KERNEL_DIR}/multicom
 }
 
 do_compile() {
@@ -129,4 +138,3 @@ python handle_driver_rename () {
     d.setVar("RCONFLICTS_fulan-dvb-modules-${MACHINE}", "fulan-dvb-modules")
 }
 FILES_${PN}-dev += "${includedir}"
-
