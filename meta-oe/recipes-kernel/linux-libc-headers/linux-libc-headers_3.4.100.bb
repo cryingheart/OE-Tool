@@ -11,6 +11,7 @@ SRC_URI_append_sh4 = "\
     file://linux-3.4.100_stm_0309.3.patch \
     file://bz85008_over_3.4.100-49.patch \
     file://kernel_header_85508_v4l2-dv-timings.patch \
+    file://dvb_frontend-Multistream-support-3.4.patch \
     file://stmfb.h \
     file://stm_ioctls.h \
     file://bpamem.h \
