@@ -20,6 +20,8 @@ SRC_URI_append = " \
     file://ffmpeg-fix-hls.patch \
     file://ffmpeg-buffer-size.patch \
     file://ffmpeg-fix-mpegts.patch \
+    file://allow_to_choose_rtmp_impl_at_runtime.patch \
+    file://chunked_transfer_fix_eof.patch \
 "
 
 EXTRA_FFCONF = " \
