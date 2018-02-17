@@ -13,3 +13,4 @@
  
      for (i = 0; i < c->n_playlists; i++) {
          struct playlist *pls = c->playlists[i];
+
