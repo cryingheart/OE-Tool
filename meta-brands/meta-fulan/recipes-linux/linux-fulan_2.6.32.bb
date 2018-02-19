@@ -4,11 +4,11 @@ SECTION = "kernel"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 KV = "2.6.32"
-SRCDATE = "20160701"
+SRCDATE = "20180201"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
-MACHINE_KERNEL_PR_append = ".8"
+MACHINE_KERNEL_PR_append = ".1"
 
 inherit kernel machine_kernel_pr
 
@@ -30,29 +30,24 @@ RPROVIDES_kernel-image = "kernel-image-${KERNEL_VERSION}"
 
 STM_PATCH_STR = "0217"
 LINUX_VERSION = "2.6.32.71"
-SRCREV = "18705ed0e35a5249e68704bef90ddb1c6bd92f1c"
+SRCREV = "f8c8de3b44c8ebcee7e07d87bc5b408a3a6154fe"
 
 SRC_URI = "git://github.com/kueken/linux-sh4-2.6.32.71.git;protocol=git;branch=stmicro-2 \
     file://linux-kbuild-generate-modules-builtin_stm24_${STM_PATCH_STR}.patch \
     file://linux-sh4-linuxdvb_stm24_${STM_PATCH_STR}.patch;patch=1 \
     file://linux-sh4-linuxdvb_stm24_${STM_PATCH_STR}_ca.patch;patch=1 \
     file://linux-sh4-sound_stm24_${STM_PATCH_STR}.patch;patch=1 \
-    file://linux-sh4-time_stm24_${STM_PATCH_STR}.patch;patch=1 \
     file://linux-sh4-init_mm_stm24_${STM_PATCH_STR}.patch;patch=1 \
     file://linux-sh4-copro_stm24_${STM_PATCH_STR}.patch;patch=1 \
     file://linux-sh4-strcpy_stm24_${STM_PATCH_STR}.patch;patch=1 \
     file://linux-squashfs-lzma_stm24_${STM_PATCH_STR}.patch;patch=1 \
-    file://linux-sh4-ext23_as_ext4_stm24_${STM_PATCH_STR}.patch;patch=1 \
     file://linux-sh4-bpa2_procfs_stm24_${STM_PATCH_STR}.patch;patch=1 \
     file://linux-ftdi_sio.c_stm24_${STM_PATCH_STR}.patch;patch=1 \
     file://linux-sh4-lzma-fix_stm24_${STM_PATCH_STR}.patch;patch=1 \
     file://linux-tune_stm24.patch;patch=1 \
     file://linux-sh4-permit_gcc_command_line_sections_stm24.patch;patch=1 \
-    file://linux-sh4-mmap_stm24.patch;patch=1 \
     file://linux-ratelimit-bug_stm24_${STM_PATCH_STR}.patch;patch=1 \
-    file://linux-patch_swap_notify_core_support_stm24_${STM_PATCH_STR}.patch;patch=1 \
     file://linux-sh4-cpuinfo.patch;patch=1 \
-    file://linux-sh4-add_missing_eid.patch;patch=1 \
     file://silence_conv_i2sspdif_warning.patch;patch=1 \
     file://linux-sh4-linux_yaffs2.patch;patch=1 \
     file://linux-sh4-fix-crash-usb-reboot.patch;patch=1 \
@@ -61,8 +56,6 @@ SRC_URI = "git://github.com/kueken/linux-sh4-2.6.32.71.git;protocol=git;branch=s
     file://linux-sh4-lmb_stm24_${STM_PATCH_STR}.patch;patch=1 \
     file://defconfig \
     file://st-coprocessor.h \
-    file://linux-net_stm24.patch;patch=1 \
-    file://compiler_gcc_h.patch;patch=1 \
 "
 
 SRC_URI_append_spark7162 = " \
