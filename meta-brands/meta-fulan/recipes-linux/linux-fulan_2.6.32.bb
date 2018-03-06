@@ -30,7 +30,7 @@ RPROVIDES_kernel-image = "kernel-image-${KERNEL_VERSION}"
 
 STM_PATCH_STR = "0217"
 LINUX_VERSION = "2.6.32.71"
-SRCREV = "18705ed0e35a5249e68704bef90ddb1c6bd92f1c"
+SRCREV = "3ec500f4212f9e4b4d2537c8be5ea32ebf68c43b"
 
 SRC_URI = "git://github.com/kueken/linux-sh4-2.6.32.71.git;protocol=git;branch=stmicro-2 \
     file://linux-kbuild-generate-modules-builtin_stm24_${STM_PATCH_STR}.patch \
