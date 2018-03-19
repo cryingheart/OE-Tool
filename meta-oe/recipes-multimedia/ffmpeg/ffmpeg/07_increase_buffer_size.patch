@@ -1,6 +1,6 @@
---- a/libavformat/avio.h
-+++ b/libavformat/avio.h
-@@ -292,13 +292,6 @@
+--- a/libavformat/avio.h	2016-01-16 13:54:30.822506061 +0200
++++ b/libavformat/avio.h	2016-01-16 13:56:34.175117736 +0200
+@@ -191,13 +191,6 @@
      int writeout_count;
  
      /**
@@ -14,8 +14,8 @@
       * Threshold to favor readahead over seek.
       * This is current internal only, do not use from outside.
       */
---- a/libavformat/aviobuf.c
-+++ b/libavformat/aviobuf.c
+--- a/libavformat/aviobuf.c	2018-02-16 10:06:44.742974662 +0100
++++ b/libavformat/aviobuf.c	2018-02-16 10:10:04.735765704 +0100
 @@ -33,7 +33,7 @@
  #include "url.h"
  #include <stdarg.h>
@@ -60,5 +60,6 @@
      s->buffer = buffer;
 -    s->orig_buffer_size =
      s->buffer_size = buf_size;
-     s->buf_ptr = buffer;
+     s->buf_ptr = s->buf_ptr_max = buffer;
      url_resetbuf(s, s->write_flag ? AVIO_FLAG_WRITE : AVIO_FLAG_READ);
+

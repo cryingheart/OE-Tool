@@ -2,33 +2,32 @@ RSUGGESTS_${PN} = ""
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
-DEPENDS = "alsa-lib libxml2"
+DEPENDS += "libxml2"
 
 PACKAGECONFIG[librtmp] = "--enable-librtmp,--disable-librtmp,rtmpdump"
 PACKAGECONFIG[libbluray] = "--enable-libbluray --enable-protocol=bluray,--disable-libbluray,libbluray"
 PACKAGECONFIG[libfreetype] = "--enable-libfreetype,--disable-libfreetype,freetype"
 
-PR = "r1"
-
-PACKAGECONFIG = "avdevice avfilter avcodec avformat avresample swscale swresample \
+PACKAGECONFIG = "avdevice avfilter avcodec avformat avresample swscale swresample postproc \
 		bzlib gpl x264 openssl libbluray libfreetype librtmp"
 
 
 MIPSFPU = "${@bb.utils.contains('TARGET_FPU', 'soft', '--disable-mipsfpu', '--enable-mipsfpu', d)}"
 
-SRC_URI_append = " \
-    file://ffmpeg-fix-hls.patch \
-    file://ffmpeg-buffer-size.patch \
-    file://ffmpeg-fix-mpegts.patch \
-    file://allow_to_choose_rtmp_impl_at_runtime.patch \
-    file://chunked_transfer_fix_eof.patch \
-"
+SRC_URI_append += " \
+	file://01_dashdec_improvements.patch \
+	file://02_fix_mpegts.patch \
+	file://03_allow_to_choose_rtmp_impl_at_runtime.patch \
+	file://04_hls_replace_key_uri.patch \
+	file://05_chunked_transfer_fix_eof.patch \
+	file://06_optimize_aac.patch \
+	file://07_increase_buffer_size.patch \
+	file://08_recheck_discard_flags.patch \
+	"
 
 EXTRA_FFCONF = " \
     --disable-static \
     --disable-runtime-cpudetect \
-    --disable-ffserver \
-    --disable-ffplay \
     --enable-ffprobe \
     --disable-altivec \
     --disable-amd3dnow \
@@ -57,7 +56,6 @@ EXTRA_FFCONF = " \
     --disable-muxers \
     --enable-muxer=mpeg1video \
     --enable-muxer=h264 \
-    --enable-muxer=h265 \
     --enable-muxer=mp4 \
     --enable-muxer=image2 \
     --enable-muxer=mjpeg \
@@ -72,7 +70,6 @@ EXTRA_FFCONF = " \
     --enable-encoder=mpeg1video \
     --enable-encoder=png \
     --enable-encoder=libx264 \
-    --enable-encoder=libx265 \
     --enable-encoder=ljpeg \
     --enable-encoder=mpeg4 \
     --enable-encoder=jpeg2000 \
@@ -93,7 +90,6 @@ EXTRA_FFCONF = " \
     --enable-decoder=eac3 \
     --enable-decoder=evrc \
     --enable-decoder=h264 \
-    --enable-decoder=h265 \
     --enable-decoder=iac \
     --enable-decoder=imc \
     --enable-decoder=mace3 \
@@ -259,10 +255,8 @@ EXTRA_FFCONF = " \
     --enable-demuxer=matroska \
     --enable-demuxer=mp4 \
     --enable-demuxer=h264 \
-    --enable-demuxer=h265 \
     --enable-demuxer=mpegvideo \
     --enable-parser=h264 \
-    --enable-parser=h265 \
     --enable-parser=mjpeg \
     --enable-parser=mpeg4video \
     --enable-parser=mpegvideo \
@@ -278,3 +272,4 @@ EXTRA_FFCONF = " \
     --extra-ldflags="${TARGET_LDFLAGS},--gc-sections -Wl,--print-gc-sections,-lrt" \
     --prefix=${prefix} \
 "
+
