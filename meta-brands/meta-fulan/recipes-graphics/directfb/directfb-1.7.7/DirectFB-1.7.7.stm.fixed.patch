@@ -12719,7 +12719,7 @@ diff -Naur DirectFB-1.7.7/interfaces/IDirectFBImageProvider/mme/transform/JPEGDE
 +
 +/*
 +** JPEGDECHW_LumaAddress_t :
-+**   Defines the address type for the JPEGDECHW decoded Luma data�s
++**   Defines the address type for the JPEGDECHW decoded Luma data\92s
 +**   Bits 0 to 7 shall be set to 0 
 +*/
 +typedef U32 *JPEGDECHW_LumaAddress_t;
@@ -12727,7 +12727,7 @@ diff -Naur DirectFB-1.7.7/interfaces/IDirectFBImageProvider/mme/transform/JPEGDE
 +
 +/*
 +** JPEGDECHW_ChromaAddress_t :
-+**   Defines the address type for the JPEGDECHW decoded Chroma data�s 
++**   Defines the address type for the JPEGDECHW decoded Chroma data\92s 
 +**   Bits 0 to 7 shall be set to 0
 +*/
 +typedef U32 *JPEGDECHW_ChromaAddress_t;
