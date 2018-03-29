@@ -62,4 +62,3 @@
      s->buffer_size = buf_size;
      s->buf_ptr = s->buf_ptr_max = buffer;
      url_resetbuf(s, s->write_flag ? AVIO_FLAG_WRITE : AVIO_FLAG_READ);
-

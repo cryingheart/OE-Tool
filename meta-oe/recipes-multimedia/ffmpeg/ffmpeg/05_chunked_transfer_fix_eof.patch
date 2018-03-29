@@ -14,4 +14,3 @@ diff -uNr ffmpeg-3.4.2/libavformat/http.c ffmpeg-3.4.2_chunked_transfer_fix_eof/
              else if (s->chunksize == UINT64_MAX) {
                  av_log(h, AV_LOG_ERROR, "Invalid chunk size %"PRIu64"\n",
                         s->chunksize);
-

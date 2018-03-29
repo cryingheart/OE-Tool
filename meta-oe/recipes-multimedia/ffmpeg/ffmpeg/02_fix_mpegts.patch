@@ -14,4 +14,3 @@ diff -uNr ffmpeg-3.4.2/libavformat/mpegts.c ffmpeg-3.4.2_fix_mpegts/libavformat/
  
      return 0;
  }
-

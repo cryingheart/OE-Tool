@@ -56,4 +56,3 @@ diff -uNr ffmpeg-3.4.2/libavformat/hls.c ffmpeg-3.4.2_hls_replace_key_uri/libavf
      {NULL}
  };
  
-

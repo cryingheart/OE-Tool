@@ -116,4 +116,3 @@ diff -uNr ffmpeg-3.4.2/libavformat/rtmpproto.c ffmpeg-3.4.2_allow_to_choose_rtmp
 +RTMP_PROTOCOL(ffrtmpt)
 +RTMP_PROTOCOL(ffrtmpte)
 +RTMP_PROTOCOL(ffrtmpts)
-

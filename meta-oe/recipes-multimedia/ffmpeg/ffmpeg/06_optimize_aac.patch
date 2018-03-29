@@ -59,4 +59,3 @@
                        IndividualChannelStream *ics, int decode)
  {
      const int mmm = FFMIN(ics->tns_max_bands, ics->max_sfb);
-

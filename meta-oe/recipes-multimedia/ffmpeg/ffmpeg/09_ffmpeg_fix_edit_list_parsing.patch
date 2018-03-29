@@ -14,4 +14,3 @@ http://git.videolan.org/gitweb.cgi/ffmpeg.git/?p=ffmpeg.git;a=commitdiff;h=ca6ca
                  curr_cts += ctts_data_old[ctts_index_old].duration;
                  ctts_sample_old++;
                  if (ctts_sample_old == ctts_data_old[ctts_index_old].count) {
-
