@@ -62,7 +62,6 @@ SRC_URI = "git://github.com/Duckbox-Developers/linux-sh4-2.6.32.71.git;protocol=
     file://defconfig \
     file://st-coprocessor.h \
     file://linux-net_stm24.patch;patch=1 \
-    file://compiler_gcc_h.patch;patch=1 \
 "
 
 SRC_URI_append_spark7162 = " \

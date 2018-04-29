@@ -9,9 +9,8 @@ RCONFLICTS_${PN} = "enigma2-plugin-extensions-serviceapp"
 RREPLACES_${PN} = "enigma2-plugin-extensions-serviceapp"
 
 SRCREV = "${AUTOREV}"
-
-SRC_URI= " \
-    ${@bb.utils.contains('BRAND_OEM', 'fulan', 'git://github.com/mx3L/serviceapp.git;branch=develop', 'git://github.com/mx3L/serviceapp.git;branch=master file://0001-serviceapp-add-setQpipMode-function-recently-added-f.patch', d)} \
+SRC_URI = " \
+    git://github.com/mx3L/serviceapp.git;branch=develop \
     "
 
 S = "${WORKDIR}/git"
