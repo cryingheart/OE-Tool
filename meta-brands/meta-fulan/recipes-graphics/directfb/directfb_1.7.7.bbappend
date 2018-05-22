@@ -16,6 +16,8 @@ EXTRA_OECONF = " \
   ${@bb.utils.contains("TARGET_ARCH", "sh4", "--enable-stmfbdev=yes --enable-mme=yes --enable-hwjpeg --enable-rle --enable-hwpng", "", d)} \
 "
 
+RRECOMMENDS_${PN}_append_sh4 += " directfb-stgfx2 "
+
 FILES_${PN} += "\
   ${libdir}/directfb-${RV}/gfxdrivers/*.so \
 "

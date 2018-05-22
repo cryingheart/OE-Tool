@@ -8,7 +8,7 @@ SRCDATE = "20170701"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
-MACHINE_KERNEL_PR_append = ".4"
+MACHINE_KERNEL_PR_append = ".2"
 
 inherit kernel machine_kernel_pr
 
@@ -30,9 +30,10 @@ RPROVIDES_kernel-image = "kernel-image-${KERNEL_VERSION}"
 
 STM_PATCH_STR = "0217"
 LINUX_VERSION = "2.6.32.71"
-SRCREV = "3ec500f4212f9e4b4d2537c8be5ea32ebf68c43b"
+SRCREV = "${AUTOREV}"
+# SRCREV = "3ec500f4212f9e4b4d2537c8be5ea32ebf68c43b"
 
-SRC_URI = "git://github.com/Duckbox-Developers/linux-sh4-2.6.32.71.git;protocol=git;branch=stmicro \
+SRC_URI = "git://github.com/kueken/linux-sh4-2.6.32.71.git;protocol=git;branch=stmicro-1 \
     file://linux-kbuild-generate-modules-builtin_stm24_${STM_PATCH_STR}.patch \
     file://linux-sh4-linuxdvb_stm24_${STM_PATCH_STR}.patch;patch=1 \
     file://linux-sh4-linuxdvb_stm24_${STM_PATCH_STR}_ca.patch;patch=1 \

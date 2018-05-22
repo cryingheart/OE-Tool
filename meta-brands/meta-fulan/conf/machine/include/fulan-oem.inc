@@ -121,7 +121,7 @@ ${@bb.utils.contains('MACHINEBUILD', 'dynaspark7162', 'mtd6' , '', d)}\
 KERNEL_FILE = "uImage"
 ROOTFS_FILE = "e2jffs2.img"
 
-MACHINE_KERNEL_PR = "r1"
+MACHINE_KERNEL_PR = "r2"
 KERNEL_MODULE_PACKAGE_SUFFIX = ""
 
 TARGET_ARCH = "sh4"
@@ -148,6 +148,7 @@ DVBPROVIDER = "kernel"
 MACHINE_FEATURES = "3dtv alsa switchoff kernel26 ext2 usbhost serial dvb-c singlecore no-cl-svr textlcd sh4booster no-nmap omb skins1080 directfb"
 
 DVBMEDIASINK_CONFIG = "--with-wma --with-wmv --with-pcm --with-dtsdownmix --with-eac3"
+DISTRO_FEATURES_append += "gtk-directfb libsigc2"
 
 KERNEL_IMAGETYPE = "uImage"
 #KERNEL_OUTPUT = "${KERNEL_IMAGETYPE}"
@@ -196,6 +197,7 @@ MACHINE_ESSENTIAL_EXTRA_RDEPENDS += " \
     stlirc \
     stinit \
     fulan-dvb-modules-${MACHINE} \
+    mountspark \
     mtd-utils-jffs2 \
     "
 
@@ -209,7 +211,6 @@ EXTRA_IMAGEDEPENDS += "\
     enigma2-plugin-systemplugins-vfdcontrol \
     libpcre \
     libstgles \
-    directfb-stgfx2 \
     "
 
 MACHINE_EXTRA_RDEPENDS = "\
