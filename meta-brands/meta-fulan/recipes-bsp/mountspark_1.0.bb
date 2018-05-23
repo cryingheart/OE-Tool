@@ -1,6 +1,5 @@
 DESCRIPTION = "Mount spark root as usb."
-LICENSE = "GPLv2+"
-LIC_FILES_CHKSUM = "file://${OPENPLI_BASE}/LICENSE;md5=eb723b61539feef013de476e68b5c50a"
+require conf/license/license-gplv2.inc
 
 RDEPENDS_${PN} = "kernel-module-yaffs"
 
